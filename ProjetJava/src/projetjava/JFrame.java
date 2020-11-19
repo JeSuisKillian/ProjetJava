@@ -313,16 +313,16 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        if (new Patients().testID(jLabel10.getText()) == false) {
+        //if (new Patients().testID(jLabel10.getText()) == false) {
             Connection conn;
-            String URL = "jdbc:mysql://localhost:3306/caresystem";
-            String password = "";
-            String user = "root";
+            String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
+            String password = "Amoxcilline98";
+            String user = "219005";
 
             try {
                 conn = DriverManager.getConnection(URL, user, password);
                 System.out.println("access to db ok");
-                String sql = "insert into patients (NOM, PRENOM, AGE, SEXE, MAIL, PASSWORD) values (?,?,?,?,?,?)";
+               /* String sql = "insert into patients (NOM, PRENOM, AGE, SEXE, MAIL, PASSWORD) values (?,?,?,?,?,?)";
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, jTextField2.getText());
                 st.setString(2, jTextField3.getText());
@@ -331,12 +331,12 @@ public class JFrame extends javax.swing.JFrame {
                 st.setString(5, jTextField6.getText());
                 st.setString(6, jTextField7.getText());
                 st.execute();
-                System.out.println("datas added successfully");
+                System.out.println("datas added successfully");*/
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }// TODO add your handling code here:
+       // }// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

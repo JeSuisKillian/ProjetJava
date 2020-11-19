@@ -22,9 +22,9 @@ public class Patients {
         boolean usernameExists = false;
 
         Connection conn;
-        String URL = "jdbc:mysql://localhost:3306/caresystem";
-        String password ="";
-        String user = "root";
+        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
+        String password ="Amoxcilline98";
+        String user = "219005";
         
         try{
         conn = DriverManager.getConnection(URL, user, password);
