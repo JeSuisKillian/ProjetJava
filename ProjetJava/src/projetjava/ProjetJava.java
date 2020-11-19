@@ -18,7 +18,8 @@ public class ProjetJava {
         // TODO code application logic here
         System.out.println("PIERRE ALEXANDRE EN A MARRE QUE CA MARCHE PAS");
         
-        new JFrame().setVisible(true);
+        //new JFrame().setVisible(true);
+        new Consulter().setVisible(true);
     }
     
 }
