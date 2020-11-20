@@ -29,7 +29,7 @@ public class Patients {
         try{
         conn = DriverManager.getConnection(URL, user, password);
         
-        PreparedStatement st = conn.prepareStatement("select mail from patients");
+        PreparedStatement st = conn.prepareStatement("select mail from Patients");
         ResultSet r1=st.executeQuery();
         String usernameCounter;
          if(r1.next()) 

@@ -378,7 +378,7 @@ public class JFrame extends javax.swing.JFrame {
             try {
                 conn = DriverManager.getConnection(URL, user, password);
                 System.out.println("access to db ok");
-               String sql = "insert into patients (NOM, PRENOM, AGE, SEXE, MAIL, PASSWORD) values (?,?,?,?,?,?)";
+               String sql = "insert into Patients (SURNAME, FIRSTNAME, AGE, GENDER, MAIL, PASSWORD) values (?,?,?,?,?,?)";
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, jTextField2.getText());
                 st.setString(2, jTextField3.getText());
