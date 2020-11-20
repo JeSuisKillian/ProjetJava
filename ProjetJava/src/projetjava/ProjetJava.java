@@ -5,6 +5,8 @@
  */
 package projetjava;
 
+import java.sql.*;
+
 /**
  *
  * @author killi
@@ -16,7 +18,15 @@ public class ProjetJava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("master");
+
+
+
+        System.out.println("PIERRE ALEXANDRE EN A MARRE QUE CA MARCHE PAS");
+        
+        new JFrame().setVisible(true);
+        
+
+
     }
-    
+
 }
