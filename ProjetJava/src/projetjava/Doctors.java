@@ -6,6 +6,7 @@
 package projetjava;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Doctors {
     private String m_specialisation;
     private String m_qualification;
     private String m_investement;
+    private ArrayList<Appointment> m_DocApp = new ArrayList<>();
 
     public Doctors() {
 
@@ -112,4 +114,11 @@ public class Doctors {
             }
     }
 }
+    
+    public void addAppointement()
+    {
+        //ajouter un nouveau rendez vous dans la base de donnée dont c'est lui le docteur
+    }
+    
+
 }
