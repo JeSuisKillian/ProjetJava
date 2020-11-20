@@ -51,5 +51,27 @@ public class Patients {
         return usernameExists;
     }
     
-   
+
+    public void chooseAppointment()
+    {
+          Connection conn;
+        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
+        String password = "Amoxcilline98";
+        String user = "219005";
+
+        try {
+            conn = DriverManager.getConnection(URL, user, password);
+
+            PreparedStatement st1 = conn.prepareStatement("UPDATE Appointment SET Patient=?");
+            st1.setString(1, m_surName);
+            
+            st1.execute();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
