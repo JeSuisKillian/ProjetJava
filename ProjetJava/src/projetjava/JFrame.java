@@ -183,7 +183,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jButton2)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jLabel1.setText("SIGN IN PAGE");
@@ -423,9 +423,12 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if((new Patients().testPassMail(jTextField1.getText(),jPasswordField1.getText()))==true)
+        Patients MyP = new Patients();
+        if((MyP.testPassMail(jTextField1.getText(),jPasswordField1.getText()))==true)
         {
             //Insérer le panel des rdv quand on a Sign Up
+            MyP.setPatient(jTextField1.getText());
+            MyP.chooseAppointment();
             
         }
         else
