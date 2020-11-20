@@ -20,6 +20,7 @@ public class ProjetJava {
         System.out.println("PIERRE ALEXANDRE EN A MARRE QUE CA MARCHE PAS");
         
         new JFrame().setVisible(true);
+        
     }
     
 }
