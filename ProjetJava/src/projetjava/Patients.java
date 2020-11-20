@@ -63,7 +63,7 @@ public class Patients {
         try {
             conn = DriverManager.getConnection(URL, user, password);
 
-            PreparedStatement st = conn.prepareStatement("select*from Patient where mail = ?");
+            PreparedStatement st = conn.prepareStatement("select*from Patients where mail = ?");
             st.setString(1, mail);
             ResultSet r1 = st.executeQuery();
             if (r1.next()) {
@@ -148,9 +148,8 @@ public class Patients {
         return IndentificationOK;
     }
     
-    public void chooseAppointment()
-    {
-          Connection conn;
+    public void chooseAppointment() {
+        Connection conn;
         String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
         String password = "Amoxcilline98";
         String user = "219005";
@@ -160,7 +159,6 @@ public class Patients {
 
             PreparedStatement st1 = conn.prepareStatement("UPDATE Appointment SET Patient=?");
             st1.setString(1, m_surName);
-            
             st1.execute();
             conn.close();
 
@@ -168,4 +166,5 @@ public class Patients {
             e.printStackTrace();
         }
     }
+
 }
