@@ -428,7 +428,7 @@ public class JFrame extends javax.swing.JFrame {
         {
             //Insérer le panel des rdv quand on a Sign Up
             MyP.setPatient(jTextField1.getText());
-            MyP.chooseAppointment();
+            //MyP.chooseAppointment();A deplacer, rajouter le nom du docteur choisit
             
         }
         else

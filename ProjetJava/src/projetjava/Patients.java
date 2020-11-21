@@ -62,10 +62,10 @@ public class Patients {
         try {
             conn = DriverManager.getConnection(URL, user, password);
 
-            PreparedStatement st = conn.prepareStatement("select*from Patient where mail = ?");
+            PreparedStatement st = conn.prepareStatement("select*from Patients where mail = ?");
             st.setString(1, mail);
             ResultSet r1 = st.executeQuery();
-            if (r1.next()) {
+            while (r1.next()) {
                 m_surName = r1.getString(1);
                 m_firstName = r1.getString(2);
                 m_age = r1.getString(3);
@@ -74,6 +74,8 @@ public class Patients {
                 m_password = r1.getString(6);
 
             }
+            
+            
             conn.close();
 
         } catch (SQLException e) {
@@ -147,7 +149,7 @@ public class Patients {
         return IndentificationOK;
     }
     
-    public void chooseAppointment()
+    public void chooseAppointment(String doc)
     {
           Connection conn;
         String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
@@ -157,10 +159,14 @@ public class Patients {
         try {
             conn = DriverManager.getConnection(URL, user, password);
 
-            PreparedStatement st1 = conn.prepareStatement("UPDATE Appointment SET Patient=?");
+            PreparedStatement st1 = conn.prepareStatement("UPDATE Appointment SET Patient=? WHERE (Doctor = ?"
+                    + "AND Available = 1)");
             st1.setString(1, m_surName);
-            
+            st1.setString(2, doc);
             st1.execute();
+            
+            PreparedStatement st2 = conn.prepareStatement("UPDATE Appointment SET Available=0 WHERE Patient IS NOT NULL");
+            st2.execute();
             conn.close();
 
         } catch (SQLException e) {
