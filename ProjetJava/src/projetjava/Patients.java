@@ -62,7 +62,7 @@ public class Patients {
         try {
             conn = DriverManager.getConnection(URL, user, password);
 
-            PreparedStatement st = conn.prepareStatement("select*from Patient where mail = ?");
+            PreparedStatement st = conn.prepareStatement("select*from Patients where mail = ?");
             st.setString(1, mail);
             ResultSet r1 = st.executeQuery();
             if (r1.next()) {
@@ -90,7 +90,7 @@ public class Patients {
             String user = "219005";
             try {
                 conn = DriverManager.getConnection(URL, user, pass);
-                String sql = "insert into Patients (SURNAME, FIRSTNAME, AGE, GENDER, MAIL,PASSWORD) values (?,?,?,?,?,?)";
+                String sql = "insert into Patients (SURNAME, FIRSTNAME, AGE, GENDER, MAIL,PASSWORD,ADRESSE) values (?,?,?,?,?,?,?)";
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, surName);
                 st.setString(2, firstName);
@@ -98,6 +98,7 @@ public class Patients {
                 st.setString(4, gender);
                 st.setString(5, mail);
                 st.setString(6, password);
+                st.setString(7, "ici");
                 st.execute();
                 conn.close();
                 System.out.println("Added Patient");
@@ -147,9 +148,8 @@ public class Patients {
         return IndentificationOK;
     }
     
-    public void chooseAppointment()
-    {
-          Connection conn;
+    public void chooseAppointment() {
+        Connection conn;
         String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
         String password = "Amoxcilline98";
         String user = "219005";
@@ -159,7 +159,6 @@ public class Patients {
 
             PreparedStatement st1 = conn.prepareStatement("UPDATE Appointment SET Patient=?");
             st1.setString(1, m_surName);
-            
             st1.execute();
             conn.close();
 
