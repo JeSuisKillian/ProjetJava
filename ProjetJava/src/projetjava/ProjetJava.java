@@ -18,13 +18,11 @@ public class ProjetJava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-
-
-
-        System.out.println("PIERRE ALEXANDRE EN A MARRE QUE CA MARCHE PAS");
-        
-        new JFrame().setVisible(true);
-        
+        //new JFrame().setVisible(true);
+        Patients p=new Patients();
+        p.setPatient("MOI");
+        p.chooseAppointment("Doctor House");
+        p.chargeAllAppointment();
      
 
     }

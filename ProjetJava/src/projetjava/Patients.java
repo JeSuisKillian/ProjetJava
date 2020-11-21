@@ -203,10 +203,10 @@ public class Patients {
                 String reason=r1.getString(4);
                 boolean available=r1.getBoolean(5);
                 
-                m_PaApp.add(new Appointment(date, time, doctor, patient, reason, available));
+                m_PaApp.add(new Appointment(date, time,patient, doctor,reason, available));
                    
             }
-            
+            System.out.println(m_PaApp.get(0).getPatient());
             conn.close();
         }
         catch(SQLException e)

@@ -760,7 +760,7 @@ public class JFrame extends javax.swing.JFrame {
             //Insérer le panel des rdv quand on a Sign Up
             MyP.setPatient(jTextField1.getText());
 
-            MyP.chooseAppointment();
+            //MyP.chooseAppointment();
             jPanel2.setVisible(false);
             jPanel1.setVisible(false);
             jPanel3.setVisible(false);
