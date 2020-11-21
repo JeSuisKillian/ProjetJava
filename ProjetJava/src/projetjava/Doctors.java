@@ -6,7 +6,6 @@
 package projetjava;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -21,11 +20,9 @@ public class Doctors {
     private String m_specialisation;
     private String m_qualification;
     private String m_investement;
-    private ArrayList<Appointment> m_DocApp = new ArrayList<>();
 
     public Doctors() {
 
-        
     }
 
     public boolean testIDDoctor(String mail) {
@@ -39,7 +36,7 @@ public class Doctors {
         try {
             conn = DriverManager.getConnection(URL, user, password);
 
-            PreparedStatement st = conn.prepareStatement("select mail from doctors");
+            PreparedStatement st = conn.prepareStatement("select mail from Doctors");
             ResultSet r1 = st.executeQuery();
             String usernameCounter;
             if (r1.next()) {
@@ -85,20 +82,18 @@ public class Doctors {
         }
 
     }
-    
-    public void addDoctors(String surName, String firstName, String mail, 
-                            String pass, String specialisation, String qualification, String investment)
-    {
+
+    public void addDoctors(String surName, String firstName, String mail,
+            String pass, String specialisation, String qualification, String investment) {
         if (testIDDoctor(mail) == false) {
             Connection conn;
             String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
             String password = "Amoxcilline98";
             String user = "219005";
-
             try {
                 conn = DriverManager.getConnection(URL, user, password);
-               String sql = "insert into Doctors (SURNAME, FIRSTNAME, MAIL,PASSWORD, SPECIALISATIONS, QUALIFICATIONS"
-                       + "INVESTMENT) values (?,?,?,?,?,?,?)";
+                String sql = "insert into Doctors (SURNAME, FIRSTNAME, MAIL,PASSWORD, SPECIALISATIONS, QUALIFICATIONS,INVESTMENT) values (?,?,?,?,?,?,?)";
+                         
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, surName);
                 st.setString(2, firstName);
@@ -106,19 +101,51 @@ public class Doctors {
                 st.setString(4, pass);
                 st.setString(5, specialisation);
                 st.setString(6, qualification);
-                st.setString(6, investment);
+                st.setString(7, investment);
                 st.execute();
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
     }
-}
-    
-    public void addAppointement()
-    {
-        //ajouter un nouveau rendez vous dans la base de donnée dont c'est lui le docteur
-    }
-    
 
+    public boolean testDocPassMail(String mail, String pass) {
+        boolean IndentificationOK = false;
+
+        Connection conn;
+        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
+        String password = "Amoxcilline98";
+        String user = "219005";
+
+        try {
+            conn = DriverManager.getConnection(URL, user, password);
+
+            PreparedStatement st1 = conn.prepareStatement("select mail from Doctors");
+            PreparedStatement st2 = conn.prepareStatement("select password from Doctors");
+            ResultSet r1 = st1.executeQuery();
+            String usernameMail;
+            System.out.println(mail);
+            System.out.println(pass);
+            ResultSet r2 = st2.executeQuery();
+            String usernamePass;
+            while (r1.next() && r2.next()) {
+                usernameMail = r1.getString("mail");
+                System.out.println(usernameMail);
+                usernamePass = r2.getString("password");
+                System.out.println(usernamePass);
+                if (usernameMail.equals(mail) && usernamePass.equals(pass)) {
+                    IndentificationOK = true;
+                    System.out.println("Bon mail et mdp");
+                    return IndentificationOK;
+                }
+            }
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return IndentificationOK;
+    }
 }

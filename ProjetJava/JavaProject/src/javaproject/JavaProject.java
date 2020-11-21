@@ -3,28 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetjava;
-
-import java.sql.*;
+package javaproject;
 
 /**
  *
- * @author killi
+ * @author Pierr
  */
-public class ProjetJava {
+public class JavaProject {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new JFrame().setVisible(true);
-        /*Patients p=new Patients();
-        p.setPatient("MOI");
-        p.chooseAppointment("Doctor House");
-        p.chargeAllAppointment();*/
-     
-
+        System.out.println("ok");
     }
-
+    
 }
