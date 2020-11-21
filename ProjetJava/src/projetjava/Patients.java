@@ -91,7 +91,7 @@ public class Patients {
             String user = "219005";
             try {
                 conn = DriverManager.getConnection(URL, user, pass);
-                String sql = "insert into Patients (SURNAME, FIRSTNAME, AGE, GENDER, MAIL,PASSWORD) values (?,?,?,?,?,?)";
+                String sql = "insert into Patients (SURNAME, FIRSTNAME, AGE, GENDER, MAIL,PASSWORD,ADRESSE) values (?,?,?,?,?,?,?)";
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, surName);
                 st.setString(2, firstName);
@@ -99,6 +99,7 @@ public class Patients {
                 st.setString(4, gender);
                 st.setString(5, mail);
                 st.setString(6, password);
+                st.setString(7, "ici");
                 st.execute();
                 conn.close();
                 System.out.println("Added Patient");
