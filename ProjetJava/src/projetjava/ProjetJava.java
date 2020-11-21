@@ -25,7 +25,7 @@ public class ProjetJava {
         
         new JFrame().setVisible(true);
         
-
+     
 
     }
 

@@ -5,6 +5,13 @@
  */
 package projetjava;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -13,18 +20,48 @@ import java.util.GregorianCalendar;
  */
 public class Appointment {
      
-    private GregorianCalendar date;
-    private Patients patient;
-    private Doctors doctor;
-    private String motif;
-    private boolean disponible;
+    private Date date;
+    private Date time;
+    private String patient;
+    private String doctor;
+    private String reason;
+    private boolean available;
     
-    public Appointment (GregorianCalendar d, Doctors doc, String m, boolean dispo)
+    public Appointment (Date d, Date t, String p, String doc, String r, boolean a)
     {
-        date = d;
-        doctor=doc;
-        motif = m;
-        disponible = dispo;
+       date=d;
+       time=t;
+       patient=p;
+       doctor=doc;
+       reason=r;
+       available=a;
     }
+    
+    public Date getDate()
+    {
+        return date;
+    }
+     public Date getTime()
+    {
+        return date;
+    }
+     public String getPatient()
+     {
+         return patient;
+     }
+     public String getDoctor()
+     {
+         return doctor;
+     }
+     public String getReason()
+     {
+         return reason;
+     }
+     public boolean getAivalable()
+     {
+         return available;
+     }
+    
+    
 }
 
