@@ -5,41 +5,60 @@
  */
 package projetjava;
 
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
  *
- * @author killi
+ * @author Pierr
  */
 public class Appointment {
-
-    private GregorianCalendar date;
-    private Patients patient;
-    private Doctors doctor;
-    private String motif;
-    private boolean disponible;
-
-    public Appointment(GregorianCalendar d, Doctors doc, String m, boolean dispo) {
-        date = d;
-        doctor = doc;
-        motif = m;
-        disponible = dispo;
+     
+    private Date date;
+    private Date time;
+    private String patient;
+    private String doctor;
+    private String reason;
+    private boolean available;
+    
+    public Appointment (Date d, Date t, String p, String doc, String r, boolean a)
+    {
+       date=d;
+       time=t;
+       patient=p;
+       doctor=doc;
+       reason=r;
+       available=a;
     }
-
-    public void CreateApp() {
-        Connection conn;
-        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
-        String password = "Amoxcilline98";
-        String user = "219005";
-
-        try {
-            conn = DriverManager.getConnection(URL, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+    
+    public Date getDate()
+    {
+        return date;
     }
-
+     public Date getTime()
+    {
+        return date;
+    }
+     public String getPatient()
+     {
+         return patient;
+     }
+     public String getDoctor()
+     {
+         return doctor;
+     }
+     public String getReason()
+     {
+         return reason;
+     }
+     public boolean getAivalable()
+     {
+         return available;
+     }
+    
     
 }
+

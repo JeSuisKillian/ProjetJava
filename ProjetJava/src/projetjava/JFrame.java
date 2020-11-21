@@ -19,6 +19,8 @@ public class JFrame extends javax.swing.JFrame {
     /**
      * Creates new form JFrame
      */
+    private Patients MyP = new Patients();
+    
     public JFrame() {
         initComponents();
         jPanel2.setVisible(false);
@@ -726,7 +728,7 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         new Patients().addPatients(jTextField2.getText(), jTextField3.getText(),jTextField4.getText(), jTextField5.getText(),jTextField6.getText(), jPasswordField2.getText());      
+         MyP.addPatients(jTextField2.getText(), jTextField3.getText(),jTextField4.getText(), jTextField5.getText(),jTextField6.getText(), jPasswordField2.getText());      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -752,11 +754,12 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Patients MyP = new Patients();
+        
         if((MyP.testPassMail(jTextField1.getText(),jPasswordField1.getText()))==true)
         {
             //Insérer le panel des rdv quand on a Sign Up
             MyP.setPatient(jTextField1.getText());
+
             MyP.chooseAppointment();
             jPanel2.setVisible(false);
             jPanel1.setVisible(false);
@@ -764,6 +767,10 @@ public class JFrame extends javax.swing.JFrame {
             jPanel4.setVisible(true);
             jPanel5.setVisible(false);
             jPanel6.setVisible(false);
+
+            //MyP.chooseAppointment();A deplacer, rajouter le nom du docteur choisit²         
+            
+
         }
         else
         {
