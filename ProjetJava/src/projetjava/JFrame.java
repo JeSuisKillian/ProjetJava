@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package projetjava;
+import java.*;
+import java.sql.*;
+import javax.swing.*;
+import java.text.*;
+import javax.swing.table.DefaultTableModel;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
