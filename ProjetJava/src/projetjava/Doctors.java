@@ -165,12 +165,13 @@ public class Doctors {
             while (r1.next()) {
                 Date date = r1.getDate(1);
                 Date time = r1.getTime(1);
-                String doctor = r1.getString(2);
-                String patient = r1.getString(3);
-                String reason = r1.getString(4);
-                boolean available = r1.getBoolean(5);
+                String clinic = r1.getString(2);
+                String doctor = r1.getString(3);
+                String patient = r1.getString(4);
+                String reason = r1.getString(5);
+                boolean available = r1.getBoolean(6);
 
-                m_DocApp.add(new Appointment(date, time, patient, doctor, reason, available));
+                m_DocApp.add(new Appointment(date, time, clinic, patient, doctor, reason, available));
 
             }
             System.out.println(m_DocApp.get(0).getPatient());
