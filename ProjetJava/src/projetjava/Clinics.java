@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -68,7 +69,7 @@ public class Clinics {
             {
                 
                 Date date=r1.getDate(1);
-                Date time=r1.getTime(1);
+                Time time=r1.getTime(7);
                 String clinic=r1.getString(2);
                 String doctor=r1.getString(3);
                 String patient=r1.getString(4);

@@ -1205,10 +1205,10 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
                 
           jPanel7.setVisible(false);
-              String data[][] = new String[MyP.getApp().size()][5];
-              String columns[] = {"Doctor", "Patient", "Reason", "Day","Hour"};
+              String data[][] = new String[MyP.getApp().size()][6];
+              String columns[] = {"Doctor", "Patient", "Reason", "Day","Hour", "Clinic"};
               DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-              DateFormat dateFormatTime = new SimpleDateFormat("HH:mm:ss");
+              DateFormat dateFormatTime = new SimpleDateFormat("HH:mm");
               for(int i=0;i<MyP.getApp().size();++i)
               {
                   data[i][0]=MyP.getApp(i).getDoctor();
@@ -1216,6 +1216,7 @@ public class JFrame extends javax.swing.JFrame {
                   data[i][2]=MyP.getApp(i).getReason();
                   data[i][3]= dateFormat.format(MyP.getApp(i).getDate());
                   data[i][4]= dateFormatTime.format(MyP.getApp(i).getTime());
+                  data[i][5]=MyP.getApp(i).getClinic();
               }
               
               jTable1.setModel(new DefaultTableModel(data, columns));
