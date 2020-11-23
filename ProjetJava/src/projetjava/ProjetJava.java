@@ -26,7 +26,6 @@ public class ProjetJava {
         p.chooseAppointment("Doctor House");
         p.chargeAllAppointment();*/
 
-
     }
 
 }
