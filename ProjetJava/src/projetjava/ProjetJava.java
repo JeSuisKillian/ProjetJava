@@ -18,12 +18,11 @@ public class ProjetJava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //new JFrame().setVisible(true);
-        Patients p=new Patients();
-        p.setPatient("MOI");
-        p.chooseAppointment("Doctor House");
-        p.chargeAllAppointment();
-     
+        new JFrame().setVisible(true);
+        /*Patients p=new Patients();
+         p.setPatient("MOI");
+         p.chooseAppointment("Doctor House");
+         p.chargeAllAppointment();*/
 
     }
 

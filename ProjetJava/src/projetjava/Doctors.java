@@ -6,7 +6,8 @@
 package projetjava;
 
 import java.sql.*;
-
+import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author Pierr
@@ -20,6 +21,7 @@ public class Doctors {
     private String m_specialisation;
     private String m_qualification;
     private String m_investement;
+    private ArrayList<Appointment> m_DocApp = new ArrayList<>();
 
     public Doctors() {
 
@@ -147,5 +149,34 @@ public class Doctors {
         }
 
         return IndentificationOK;
+    }
+    
+    public void chargeAllDocAppointment() {
+        Connection conn;
+        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
+        String password = "Amoxcilline98";
+        String user = "219005";
+
+        try {
+            conn = DriverManager.getConnection(URL, user, password);
+            PreparedStatement st = conn.prepareStatement("SELECT*FROM Appointment WHERE Doctor=?");
+            st.setString(1, m_surName);
+            ResultSet r1 = st.executeQuery();
+            while (r1.next()) {
+                Date date = r1.getDate(1);
+                Date time = r1.getTime(1);
+                String doctor = r1.getString(2);
+                String patient = r1.getString(3);
+                String reason = r1.getString(4);
+                boolean available = r1.getBoolean(5);
+
+                m_DocApp.add(new Appointment(date, time, patient, doctor, reason, available));
+
+            }
+            System.out.println(m_DocApp.get(0).getPatient());
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
