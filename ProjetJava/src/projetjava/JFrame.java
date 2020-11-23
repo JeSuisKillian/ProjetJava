@@ -15,13 +15,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pierr
  */
-public class JFrame extends javax.swing.JFrame {
+public class JFrame extends javax.swing.JFrame{
 
     /**
      * Creates new form JFrame
      */
     private Patients MyP = new Patients();
-
     private Doctors MyD = new Doctors();
     private JList m;
     
@@ -1021,7 +1020,7 @@ public class JFrame extends javax.swing.JFrame {
             MyP.setPatient(jTextField1.getText());
             MyP.chargeAllAppointment();
            
-           
+            MyP.fermeture();
             //MyP.chooseAppointment();
             jPanel2.setVisible(false);
             jPanel1.setVisible(false);

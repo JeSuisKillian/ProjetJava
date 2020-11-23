@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.*;
 
-
 /**
  *
  * @author Pierr
@@ -28,21 +27,20 @@ public class Patients {
     private String m_password;
     private String m_adress;
     private ArrayList<Appointment> m_PaApp = new ArrayList<>();
+    private Connection conn;
 
     public Patients() {
-
+        try {
+            conn = new DBConnection().getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean testIDPatient(String mail) {
         boolean usernameExists = false;
 
-        Connection conn;
-        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
-        String password = "Amoxcilline98";
-        String user = "219005";
-
         try {
-            conn = DriverManager.getConnection(URL, user, password);
 
             PreparedStatement st = conn.prepareStatement("select mail from Patients");
             ResultSet r1 = st.executeQuery();
@@ -53,7 +51,7 @@ public class Patients {
                     usernameExists = true;
                 }
             }
-            conn.close();
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,14 +61,8 @@ public class Patients {
     }
 
     public void setPatient(String mail) {
-        Connection conn;
-        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
-        String password = "Amoxcilline98";
-        String user = "219005";
 
         try {
-            conn = DriverManager.getConnection(URL, user, password);
-
             PreparedStatement st = conn.prepareStatement("select*from Patients where mail = ?");
             st.setString(1, mail);
             ResultSet r1 = st.executeQuery();
@@ -82,9 +74,7 @@ public class Patients {
                 m_mail = r1.getString(5);
                 m_password = r1.getString(6);
 
-            }
-
-            conn.close();
+            }    
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,12 +84,9 @@ public class Patients {
     public void addPatients(String surName, String firstName, String age, String gender,
             String mail, String password) {
         if (testIDPatient(mail) == false) {
-            Connection conn;
-            String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
-            String pass = "Amoxcilline98";
-            String user = "219005";
+
             try {
-                conn = DriverManager.getConnection(URL, user, pass);
+
                 String sql = "insert into Patients (SURNAME, FIRSTNAME, AGE, GENDER, MAIL,PASSWORD,ADRESSE) values (?,?,?,?,?,?,?)";
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, surName);
@@ -110,7 +97,7 @@ public class Patients {
                 st.setString(6, password);
                 st.setString(7, "ici");
                 st.execute();
-                conn.close();
+                
                 System.out.println("Added Patient");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -121,13 +108,7 @@ public class Patients {
     public boolean testPassMail(String mail, String pass) {
         boolean IndentificationOK = false;
 
-        Connection conn;
-        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
-        String password = "Amoxcilline98";
-        String user = "219005";
-
         try {
-            conn = DriverManager.getConnection(URL, user, password);
 
             PreparedStatement st1 = conn.prepareStatement("select mail from Patients");
             PreparedStatement st2 = conn.prepareStatement("select password from Patients");
@@ -144,7 +125,7 @@ public class Patients {
                     return IndentificationOK;
                 }
             }
-            conn.close();
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -154,13 +135,8 @@ public class Patients {
     }
 
     public void chooseAppointment(String doc) {
-        Connection conn;
-        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
-        String password = "Amoxcilline98";
-        String user = "219005";
 
         try {
-            conn = DriverManager.getConnection(URL, user, password);
 
             PreparedStatement st1 = conn.prepareStatement("UPDATE Appointment SET Patient=? WHERE (Doctor = ?"
                     + "AND Available = 1)");
@@ -170,7 +146,7 @@ public class Patients {
 
             PreparedStatement st2 = conn.prepareStatement("UPDATE Appointment SET Available=0 WHERE Patient IS NOT NULL");
             st2.execute();
-            conn.close();
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -178,42 +154,47 @@ public class Patients {
     }
 
     public void chargeAllAppointment() {
-        Connection conn;
-        String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
-        String password = "Amoxcilline98";
-        String user = "219005";
+
         try {
-            conn = DriverManager.getConnection(URL, user, password);
+
             PreparedStatement st = conn.prepareStatement("SELECT*FROM Appointment WHERE Patient=?");
             st.setString(1, m_surName);
             ResultSet r1 = st.executeQuery();
-            while(r1.next())
-            {
-                Date date=r1.getDate(1);
-                String clinic=r1.getString(2);
-                String doctor=r1.getString(3);
-                String patient=r1.getString(4);
-                String reason=r1.getString(5);
-                boolean available=r1.getBoolean(6);
-                Time time =r1.getTime(7);
-                
+            while (r1.next()) {
+                Date date = r1.getDate(1);
+                String clinic = r1.getString(2);
+                String doctor = r1.getString(3);
+                String patient = r1.getString(4);
+                String reason = r1.getString(5);
+                boolean available = r1.getBoolean(6);
+                Time time = r1.getTime(7);
+
                 m_PaApp.add(new Appointment(date, time, clinic, patient, doctor, reason, available));
-                   
+
             }
-            System.out.println(m_PaApp.get(0).getTime());
-            conn.close();
+            
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
-    public ArrayList getApp()
-    {
+
+    public ArrayList getApp() {
         return m_PaApp;
     }
-    public Appointment getApp(int i)
-    {
+
+    public Appointment getApp(int i) {
         return m_PaApp.get(i);
     }
 
+    public void fermeture()
+    {
+        try{
+        conn.close();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
