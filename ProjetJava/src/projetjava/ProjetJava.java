@@ -18,7 +18,11 @@ public class ProjetJava {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //new JFrame().setVisible(true);
+
+
+        new JFrame().setVisible(true);
+        System.out.println("test");
+
         /*Patients p=new Patients();
 
         p.setPatient("MOI");
