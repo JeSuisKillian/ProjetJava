@@ -4,26 +4,27 @@
  * and open the template in the editor.
  */
 package projetjava;
-import java.*;
+
+import java.util.Date;
 import java.sql.*;
 import javax.swing.*;
 import java.text.*;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
  * @author Pierr
  */
-public class JFrame extends javax.swing.JFrame{
+public class JFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrame
      */
     private Patients MyP = new Patients();
     private Doctors MyD = new Doctors();
+    private Clinics MyC = new Clinics();
     private JList m;
-    
 
     public JFrame() {
         initComponents();
@@ -118,7 +119,6 @@ public class JFrame extends javax.swing.JFrame{
         jLabel28 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
         jTextField14 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -127,7 +127,17 @@ public class JFrame extends javax.swing.JFrame{
         jButton17 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jButton18 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
+        jButton25 = new javax.swing.JButton();
+        jButton26 = new javax.swing.JButton();
+        jButton27 = new javax.swing.JButton();
+        jButton28 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -695,8 +705,6 @@ public class JFrame extends javax.swing.JFrame{
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField14ActionPerformed(evt);
@@ -719,6 +727,34 @@ public class JFrame extends javax.swing.JFrame{
         });
 
         jButton18.setText("jButton18");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        jButton20.setText("jButton20");
+
+        jButton21.setText("jButton21");
+
+        jButton22.setText("jButton22");
+
+        jButton23.setText("jButton23");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
+
+        jButton24.setText("jButton24");
+
+        jButton25.setText("jButton25");
+
+        jButton26.setText("jButton26");
+
+        jButton27.setText("jButton27");
+
+        jButton28.setText("jButton28");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -726,15 +762,45 @@ public class JFrame extends javax.swing.JFrame{
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jButton18)
-                .addContainerGap(519, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton18)
+                    .addComponent(jButton24))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton20)
+                    .addComponent(jButton25))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton21)
+                    .addComponent(jButton26))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton22)
+                    .addComponent(jButton27))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton28)
+                    .addComponent(jButton23))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jButton18)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton18)
+                    .addComponent(jButton20)
+                    .addComponent(jButton21)
+                    .addComponent(jButton22)
+                    .addComponent(jButton23))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton24)
+                    .addComponent(jButton25)
+                    .addComponent(jButton26)
+                    .addComponent(jButton27)
+                    .addComponent(jButton28))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         jButton19.setText("jButton19");
@@ -748,44 +814,47 @@ public class JFrame extends javax.swing.JFrame{
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel29)))
+                        .addGap(72, 72, 72)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel30)))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(jButton17))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(jLabel31)
+                                .addGap(125, 125, 125)
+                                .addComponent(jLabel32))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel28)
-                .addGap(320, 320, 320))
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton19)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGap(95, 95, 95)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(jLabel29)))
-                            .addGap(72, 72, 72)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addGap(8, 8, 8)
-                                    .addComponent(jLabel30)))
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addGap(71, 71, 71)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(88, 88, 88)
-                                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(41, 41, 41)
-                                    .addComponent(jButton17))
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addGap(88, 88, 88)
-                                    .addComponent(jLabel31)
-                                    .addGap(125, 125, 125)
-                                    .addComponent(jLabel32))))
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGap(71, 71, 71)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addGap(320, 320, 320))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jButton19)
+                        .addGap(66, 66, 66))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -801,15 +870,16 @@ public class JFrame extends javax.swing.JFrame{
                     .addComponent(jLabel31)
                     .addComponent(jLabel32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton17))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -1018,9 +1088,9 @@ public class JFrame extends javax.swing.JFrame{
         if ((MyP.testPassMail(jTextField1.getText(), jPasswordField1.getText())) == true) {
             //Insérer le panel des rdv quand on a Sign Up
             MyP.setPatient(jTextField1.getText());
-            MyP.chargeAllAppointment();
-           
-            MyP.fermeture();
+            //MyP.chargeAllAppointment();
+
+            //MyP.fermeture();
             //MyP.chooseAppointment();
             jPanel2.setVisible(false);
             jPanel1.setVisible(false);
@@ -1031,8 +1101,7 @@ public class JFrame extends javax.swing.JFrame{
             jPanel8.setVisible(false);
             jComboBox1.removeAllItems();
             jComboBox2.removeAllItems();
-            jComboBox3.removeAllItems();
-            
+
             Connection conn;
             String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
             String password = "Amoxcilline98";
@@ -1043,21 +1112,17 @@ public class JFrame extends javax.swing.JFrame{
                 PreparedStatement st1 = conn.prepareStatement("select name from Clinics");
                 PreparedStatement st2 = conn.prepareStatement("select surname from Doctors");
                 ResultSet r1 = st1.executeQuery();
-                String surname,clinic;
+                String surname, clinic;
                 ResultSet r2 = st2.executeQuery();
                 while (r1.next()) {
-                    clinic = r1.getString("name");                    
-                    jComboBox1.addItem(clinic);  
+                    clinic = r1.getString("name");
+                    jComboBox1.addItem(clinic);
                 }
-                while (r2.next()) {  
-                    surname = r2.getString("SURNAME"); 
+                while (r2.next()) {
+                    surname = r2.getString("SURNAME");
                     jComboBox2.addItem(surname);
                 }
                 conn.close();
-
-           
-           
-
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -1088,9 +1153,7 @@ public class JFrame extends javax.swing.JFrame{
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
 
-        
-        if((MyD.testDocPassMail(jTextField7.getText(),jPasswordField3.getText()))==true)
-        {
+        if ((MyD.testDocPassMail(jTextField7.getText(), jPasswordField3.getText())) == true) {
 
             //Insérer le panel des rdv quand on a Sign Up
             MyD.setDoctors(jTextField7.getText());
@@ -1130,7 +1193,7 @@ public class JFrame extends javax.swing.JFrame{
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
 
-    MyD.addDoctors(jTextField9.getText(),jTextField8.getText(),jTextField13.getText(),jPasswordField4.getText(),jTextField10.getText(),jTextField11.getText(),jTextField12.getText());        // TODO add your handling code here:
+        MyD.addDoctors(jTextField9.getText(), jTextField8.getText(), jTextField13.getText(), jPasswordField4.getText(), jTextField10.getText(), jTextField11.getText(), jTextField12.getText());        // TODO add your handling code here:
 
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -1197,31 +1260,81 @@ public class JFrame extends javax.swing.JFrame{
         jPanel4.setVisible(false);
         jPanel5.setVisible(false);
         jPanel6.setVisible(false);
-        jPanel7.setVisible(true);
         jPanel8.setVisible(true);
+
+        jButton18.setText("8:00");
+        jButton20.setText("9:00");
+        jButton21.setText("10:00");
+        jButton22.setText("11:00");
+        jButton23.setText("13:00");
+        jButton24.setText("14:00");
+        jButton25.setText("15:00");
+        jButton26.setText("16:00");
+        jButton27.setText("17:00");
+        jButton28.setText("18:00");
+        ArrayList<JButton> MyB = new ArrayList<>();
+        MyB.add(jButton18);
+        MyB.add(jButton20);
+        MyB.add(jButton21);
+        MyB.add(jButton23);
+        MyB.add(jButton24);
+        MyB.add(jButton25);
+        MyB.add(jButton26);
+        MyB.add(jButton27);
+        MyB.add(jButton28);
+         //boucle for quiarcoure le tableau de renddez vous de l'hoptial selectionné, ensuite on
+        //set le text des différent boutons avec les horaires des cases i des rendez vous de l'hopital
+        //pb ca marche que si on a un nombre fixe de rendez vous
+        //faut voir si ils sont dispos
+        //essayer de supprimer un bouton quand on clique dessus ?
+
+        MyC.chargeAllAppointment(String.valueOf(jComboBox1.getSelectedItem()));
+        for (int i = 0; i < MyC.getAppH().size(); ++i) {
+            for (int j = 0; j < MyB.size(); ++j) {
+                if (MyC.getAppH(i).getAivalable() == false) {
+                    if (MyC.getAppH(i).getTime().matches(MyB.get(j).getText())) {
+                        MyB.get(j).setEnabled(false);
+                    }
+                }
+            }
+
+        }
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-                
-          jPanel7.setVisible(false);
-              String data[][] = new String[MyP.getApp().size()][6];
-              String columns[] = {"Doctor", "Patient", "Reason", "Day","Hour", "Clinic"};
-              DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-              DateFormat dateFormatTime = new SimpleDateFormat("HH:mm");
-              for(int i=0;i<MyP.getApp().size();++i)
-              {
-                  data[i][0]=MyP.getApp(i).getDoctor();
-                  data[i][1]=MyP.getApp(i).getPatient();
-                  data[i][2]=MyP.getApp(i).getReason();
-                  data[i][3]= dateFormat.format(MyP.getApp(i).getDate());
-                  data[i][4]= dateFormatTime.format(MyP.getApp(i).getTime());
-                  data[i][5]=MyP.getApp(i).getClinic();
-              }
-              
-              jTable1.setModel(new DefaultTableModel(data, columns));
-              jPanel10.setVisible(true);
+
+        jPanel7.setVisible(false);
+        String data[][] = new String[MyP.getApp().size()][6];
+        String columns[] = {"Doctor", "Patient", "Reason", "Day", "Hour", "Clinic"};
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        for (int i = 0; i < MyP.getApp().size(); ++i) {
+            data[i][0] = MyP.getApp(i).getDoctor();
+            data[i][1] = MyP.getApp(i).getPatient();
+            data[i][2] = MyP.getApp(i).getReason();
+            data[i][3] = dateFormat.format(MyP.getApp(i).getDate());
+            data[i][4] = MyP.getApp(i).getTime();
+            data[i][5] = MyP.getApp(i).getClinic();
+        }
+
+        jTable1.setModel(new DefaultTableModel(data, columns));
+        jPanel10.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+
+        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton18.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate());
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        // TODO add your handling code here:
+        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton23.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate());
+        
+    }//GEN-LAST:event_jButton23ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1271,6 +1384,15 @@ public class JFrame extends javax.swing.JFrame{
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1280,7 +1402,7 @@ public class JFrame extends javax.swing.JFrame{
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

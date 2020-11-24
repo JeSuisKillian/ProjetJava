@@ -18,14 +18,14 @@ import java.util.GregorianCalendar;
 public class Appointment {
      
     private Date date;
-    private Time time;
+    private String time;
     private String clinic;
     private String patient;
     private String doctor;
     private String reason;
     private boolean available;
     
-    public Appointment (Date d, Time t ,String c, String p, String doc, String r, boolean a)
+    public Appointment (Date d, String t ,String c, String p, String doc, String r, boolean a)
     {
        date=d;
        time=t;
@@ -40,7 +40,7 @@ public class Appointment {
     {
         return date;
     }
-    public Time getTime()
+    public String getTime()
     {
         return time;
     }

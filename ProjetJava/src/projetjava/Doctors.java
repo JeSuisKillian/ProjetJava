@@ -164,7 +164,7 @@ public class Doctors {
             ResultSet r1 = st.executeQuery();
             while (r1.next()) {
                 Date date = r1.getDate(1);
-                Time time = r1.getTime(7);
+                String time = r1.getString(7);
                 String clinic = r1.getString(2);
                 String doctor = r1.getString(3);
                 String patient = r1.getString(4);

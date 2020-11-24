@@ -52,7 +52,7 @@ public class Clinics {
         }
     }
     
-    public void chargeAllAppointment()
+    public void chargeAllAppointment(String name)
     {
          Connection conn;
         String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
@@ -62,14 +62,14 @@ public class Clinics {
         try {
             conn = DriverManager.getConnection(URL, user, password);
             PreparedStatement st= conn.prepareStatement("SELECT*FROM Appointment WHERE Clinic=?");
-            st.setString(1,m_name);
+            st.setString(1, name);
             ResultSet r1 = st.executeQuery();
             
             while(r1.next())
             {
                 
                 Date date=r1.getDate(1);
-                Time time=r1.getTime(7);
+                String time=r1.getString(7);
                 String clinic=r1.getString(2);
                 String doctor=r1.getString(3);
                 String patient=r1.getString(4);
@@ -79,12 +79,19 @@ public class Clinics {
                 m_ClApp.add(new Appointment(date, time, clinic, patient, doctor, reason, available));
                 
             }
-            System.out.println(m_ClApp.get(0).getClinic());
+           
             conn.close();
         }
         catch(SQLException e)
         {
             e.printStackTrace();
         }
+    }
+    public ArrayList getAppH() {
+        return m_ClApp;
+    }
+
+    public Appointment getAppH(int i) {
+        return m_ClApp.get(i);
     }
 }

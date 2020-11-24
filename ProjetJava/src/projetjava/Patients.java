@@ -134,14 +134,17 @@ public class Patients {
         return IndentificationOK;
     }
 
-    public void chooseAppointment(String doc) {
+    public void chooseAppointment(String doc, String time, String Clinic, String reason, Date date) {
 
         try {
-
-            PreparedStatement st1 = conn.prepareStatement("UPDATE Appointment SET Patient=? WHERE (Doctor = ?"
-                    + "AND Available = 1)");
+           java.sql.Date date2 = new java.sql.Date(date.getTime());
+            PreparedStatement st1 = conn.prepareStatement("INSERT INTO Appointment(Patient, Doctor, Clinic,Hour, Reason,Date)values (?,?,?,?,?,?)");
             st1.setString(1, m_surName);
             st1.setString(2, doc);
+            st1.setString(3,Clinic);
+            st1.setString(4,time);
+            st1.setString(5, reason);
+            st1.setDate(6,date2);
             st1.execute();
 
             PreparedStatement st2 = conn.prepareStatement("UPDATE Appointment SET Available=0 WHERE Patient IS NOT NULL");
@@ -167,13 +170,13 @@ public class Patients {
                 String patient = r1.getString(4);
                 String reason = r1.getString(5);
                 boolean available = r1.getBoolean(6);
-                Time time = r1.getTime(7);
+                String time = r1.getString(7);
 
                 m_PaApp.add(new Appointment(date, time, clinic, patient, doctor, reason, available));
 
             }
             
-            
+            System.out.println(m_PaApp.get(0).getDate());
         } catch (SQLException e) {
             e.printStackTrace();
         }
