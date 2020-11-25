@@ -23,11 +23,11 @@ public class JFrame extends javax.swing.JFrame {
     /**
      * Creates new form JFrame
      */
-    private Patients MyP = new Patients();
-    private Doctors MyD = new Doctors();
-    private Clinics MyC = new Clinics();
+    
+   private InformationSearch MyI = new InformationSearch();
+    private DataUpdate MyU = new DataUpdate(MyI);
     private ArrayList<JButton> MyB = new ArrayList<>();
-    private JList m;
+ 
 
     public JFrame() {
         initComponents();
@@ -1114,12 +1114,12 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(MyP.testIDPatient(jTextField6.getText())==true)
+        if(MyI.testIDPatient(jTextField6.getText())==true)
         {
             jLabel34.setText("Email already used, please use another one");
         }
         else{
-        MyP.addPatients(jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jPasswordField2.getText());
+        MyU.addPatients(jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jPasswordField2.getText());
         ClientTimeTable();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -1152,9 +1152,9 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-        if ((MyP.testPassMail(jTextField1.getText(), jPasswordField1.getText())) == true) {
+        if ((MyI.testPassMail(jTextField1.getText(), jPasswordField1.getText())) == true) {
             //Insérer le panel des rdv quand on a Sign Up
-            MyP.setPatient(jTextField1.getText());          
+            MyI.setPatient(jTextField1.getText());          
 
             //MyP.fermeture();       
             
@@ -1185,10 +1185,10 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
 
-        if ((MyD.testDocPassMail(jTextField7.getText(), jPasswordField3.getText())) == true) {
+        if ((MyI.testDocPassMail(jTextField7.getText(), jPasswordField3.getText())) == true) {
 
             //Insérer le panel des rdv quand on a Sign Up
-            MyD.setDoctors(jTextField7.getText());
+            MyI.setDoctors(jTextField7.getText());
             //MyD.chooseAppointment();
         jPanel2.setVisible(false);
         jPanel1.setVisible(false);
@@ -1221,7 +1221,7 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         
-        MyD.addDoctors(jTextField9.getText(), jTextField8.getText(), jTextField13.getText(), jPasswordField4.getText(), jTextField10.getText(), jTextField11.getText(), jTextArea1.getText(), jComboBox4.getSelectedItem().toString());        // TODO add your handling code here:
+        MyU.addDoctors(jTextField9.getText(), jTextField8.getText(), jTextField13.getText(), jPasswordField4.getText(), jTextField10.getText(), jTextField11.getText(), jTextArea1.getText(), jComboBox4.getSelectedItem().toString());        // TODO add your handling code here:
 
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -1277,7 +1277,7 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton30.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton30.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton30.setEnabled(false); 
         jButton30.setBackground(Color.red);
         
@@ -1285,14 +1285,14 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton31.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton31.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton31.setEnabled(false); 
         jButton31.setBackground(Color.red);
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton32.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton32.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton32.setEnabled(false); 
         jButton32.setBackground(Color.red);
         
@@ -1300,49 +1300,49 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton33.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton33.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton33.setEnabled(false); 
         jButton33.setBackground(Color.red);
     }//GEN-LAST:event_jButton33ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton34.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton34.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton34.setEnabled(false); 
         jButton34.setBackground(Color.red);
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton35.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton35.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton35.setEnabled(false); 
         jButton35.setBackground(Color.red);
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton36.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton36.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton36.setEnabled(false); 
         jButton36.setBackground(Color.red);
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton37.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton37.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton37.setEnabled(false); 
         jButton37.setBackground(Color.red);
     }//GEN-LAST:event_jButton37ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton38.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton38.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton38.setEnabled(false); 
         jButton38.setBackground(Color.red);
     }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
         // TODO add your handling code here:
-        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton39.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),jButton39.getText(), String.valueOf(jComboBox1.getSelectedItem()),jTextField12.getText(), jDateChooser1.getDate());
         jButton39.setEnabled(false); 
         jButton39.setBackground(Color.red);
     }//GEN-LAST:event_jButton39ActionPerformed
@@ -1371,20 +1371,20 @@ public class JFrame extends javax.swing.JFrame {
       
         Date date = jDateChooser1.getDate();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
+        MyI.setClinic();
         String date1 = dateFormat.format(date);
-        MyC.chargeAllAppointment(String.valueOf(jComboBox1.getSelectedItem()));
+        MyI.chargeAllAppointmentC(String.valueOf(jComboBox1.getSelectedItem()));
         for(int i =0; i<MyB.size();++i)
         {
             MyB.get(i).setEnabled(true);
             MyB.get(i).setBackground(Color.green);
         }
-        for (int i = 0; i < MyC.getAppH().size(); ++i) {
+        for (int i = 0; i < MyI.getC().getAppH().size(); ++i) {
             for (int j = 0; j < MyB.size(); ++j) {
-                if (MyC.getAppH(i).getAivalable() == false
-                        && dateFormat.format(MyC.getAppH(i).getDate()).equals(date1)) {
+                if (MyI.getC().getAppH(i).getAivalable() == false
+                        && dateFormat.format(MyI.getC().getAppH(i).getDate()).equals(date1)) {
                     
-                    if (MyC.getAppH(i).getTime().matches(MyB.get(j).getText())) {
+                    if (MyI.getC().getAppH(i).getTime().matches(MyB.get(j).getText())) {
                             MyB.get(j).setEnabled(false);
                             MyB.get(j).setBackground(Color.red);
                             
@@ -1401,18 +1401,18 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         // TODO add your handling code here:
         
-        MyP.chargeAllAppointment();
+        MyI.chargeAllAppointmentP();
         jPanel7.setVisible(false);
-        String data[][] = new String[MyP.getApp().size()][6];
+        String data[][] = new String[MyI.getP().getApp().size()][6];
         String columns[] = {"Doctor", "Patient", "Reason", "Day", "Hour", "Clinic"};
         DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-        for (int i = 0; i < MyP.getApp().size(); ++i) {
-            data[i][0] = MyP.getApp(i).getDoctor();
-            data[i][1] = MyP.getApp(i).getPatient();
-            data[i][2] = MyP.getApp(i).getReason();
-            data[i][3] = dateFormat.format(MyP.getApp(i).getDate());
-            data[i][4] = MyP.getApp(i).getTime();
-            data[i][5] = MyP.getApp(i).getClinic();
+        for (int i = 0; i < MyI.getP().getApp().size(); ++i) {
+            data[i][0] = MyI.getP().getApp(i).getDoctor();
+            data[i][1] = MyI.getP().getApp(i).getPatient();
+            data[i][2] = MyI.getP().getApp(i).getReason();
+            data[i][3] = dateFormat.format(MyI.getP().getApp(i).getDate());
+            data[i][4] = MyI.getP().getApp(i).getTime();
+            data[i][5] = MyI.getP().getApp(i).getClinic();
         }
 
         jTable1.setModel(new DefaultTableModel(data, columns));
