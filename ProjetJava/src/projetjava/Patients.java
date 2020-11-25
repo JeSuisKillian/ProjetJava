@@ -29,6 +29,7 @@ public class Patients {
     private ArrayList<Appointment> m_PaApp = new ArrayList<>();
     private Connection conn;
 
+
     public Patients() {
         try {
             conn = new DBConnection().getConnection();
@@ -103,7 +104,7 @@ public class Patients {
                 e.printStackTrace();
             }
         }
-    }
+     }
 
     public boolean testPassMail(String mail, String pass) {
         boolean IndentificationOK = false;
