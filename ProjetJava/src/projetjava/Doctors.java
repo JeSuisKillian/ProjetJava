@@ -84,7 +84,7 @@ public class Doctors {
     }
 
     public void addDoctors(String surName, String firstName, String mail,
-            String pass, String specialisation, String qualification, String investment) {
+            String pass, String specialisation, String qualification, String investment,String clinic) {
         if (testIDDoctor(mail) == false) {
             Connection conn;
             String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
@@ -92,7 +92,7 @@ public class Doctors {
             String user = "219005";
             try {
                 conn = DriverManager.getConnection(URL, user, password);
-                String sql = "insert into Doctors (SURNAME, FIRSTNAME, MAIL,PASSWORD, SPECIALISATIONS, QUALIFICATIONS,INVESTMENT) values (?,?,?,?,?,?,?)";
+                String sql = "insert into Doctors (SURNAME, FIRSTNAME, MAIL,PASSWORD, SPECIALISATIONS, QUALIFICATIONS,INVESTMENT,CLINIC) values (?,?,?,?,?,?,?,?)";
                          
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, surName);
@@ -102,6 +102,7 @@ public class Doctors {
                 st.setString(5, specialisation);
                 st.setString(6, qualification);
                 st.setString(7, investment);
+                st.setString(8, clinic);
                 st.execute();
                 conn.close();
             } catch (SQLException e) {

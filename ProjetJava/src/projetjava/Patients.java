@@ -26,7 +26,7 @@ public class Patients {
     private String m_password;
     private String m_adress;
     private ArrayList<Appointment> m_PaApp = new ArrayList<>();
-
+    
     public Patients() {
 
     }
@@ -116,7 +116,7 @@ public class Patients {
                 e.printStackTrace();
             }
         }
-    }
+     }
 
     public boolean testPassMail(String mail, String pass) {
         boolean IndentificationOK = false;
