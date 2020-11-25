@@ -918,9 +918,10 @@ public class JFrame extends javax.swing.JFrame {
         {
             jLabel34.setText("Email already used, please use another one");
         }
+        else{
         MyP.addPatients(jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jPasswordField2.getText());
         ClientTimeTable();
-        
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
