@@ -5,6 +5,7 @@
  */
 package projetjava;
 
+import java.awt.Color;
 import java.util.Date;
 import java.sql.*;
 import javax.swing.*;
@@ -24,10 +25,21 @@ public class JFrame extends javax.swing.JFrame {
     private Patients MyP = new Patients();
     private Doctors MyD = new Doctors();
     private Clinics MyC = new Clinics();
+    private ArrayList<JButton> MyB = new ArrayList<>();
     private JList m;
 
     public JFrame() {
         initComponents();
+        MyB.add(jButton18);
+        MyB.add(jButton20);
+        MyB.add(jButton21);
+        MyB.add(jButton22);
+        MyB.add(jButton23);
+        MyB.add(jButton24);
+        MyB.add(jButton25);
+        MyB.add(jButton26);
+        MyB.add(jButton27);
+        MyB.add(jButton28);
         jPanel2.setVisible(false);
         jPanel1.setVisible(false);
         jPanel4.setVisible(false);
@@ -734,10 +746,25 @@ public class JFrame extends javax.swing.JFrame {
         });
 
         jButton20.setText("jButton20");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
 
         jButton21.setText("jButton21");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
 
         jButton22.setText("jButton22");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
 
         jButton23.setText("jButton23");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
@@ -747,14 +774,39 @@ public class JFrame extends javax.swing.JFrame {
         });
 
         jButton24.setText("jButton24");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
 
         jButton25.setText("jButton25");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
 
         jButton26.setText("jButton26");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
 
         jButton27.setText("jButton27");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
 
         jButton28.setText("jButton28");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -807,6 +859,13 @@ public class JFrame extends javax.swing.JFrame {
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton19ActionPerformed(evt);
+            }
+        });
+
+        jDateChooser1.setDate(new Date());
+        jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooser1PropertyChange(evt);
             }
         });
 
@@ -1088,10 +1147,10 @@ public class JFrame extends javax.swing.JFrame {
         if ((MyP.testPassMail(jTextField1.getText(), jPasswordField1.getText())) == true) {
             //Insérer le panel des rdv quand on a Sign Up
             MyP.setPatient(jTextField1.getText());
-            //MyP.chargeAllAppointment();
+          
 
             //MyP.fermeture();
-            //MyP.chooseAppointment();
+           
             jPanel2.setVisible(false);
             jPanel1.setVisible(false);
             jPanel3.setVisible(false);
@@ -1272,30 +1331,32 @@ public class JFrame extends javax.swing.JFrame {
         jButton26.setText("16:00");
         jButton27.setText("17:00");
         jButton28.setText("18:00");
-        ArrayList<JButton> MyB = new ArrayList<>();
-        MyB.add(jButton18);
-        MyB.add(jButton20);
-        MyB.add(jButton21);
-        MyB.add(jButton23);
-        MyB.add(jButton24);
-        MyB.add(jButton25);
-        MyB.add(jButton26);
-        MyB.add(jButton27);
-        MyB.add(jButton28);
-         //boucle for quiarcoure le tableau de renddez vous de l'hoptial selectionné, ensuite on
-        //set le text des différent boutons avec les horaires des cases i des rendez vous de l'hopital
-        //pb ca marche que si on a un nombre fixe de rendez vous
-        //faut voir si ils sont dispos
-        //essayer de supprimer un bouton quand on clique dessus ?
+       
+      
+        Date date = jDateChooser1.getDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+        String date1 = dateFormat.format(date);
         MyC.chargeAllAppointment(String.valueOf(jComboBox1.getSelectedItem()));
+        for(int i =0; i<MyB.size();++i)
+        {
+            MyB.get(i).setEnabled(true);
+            MyB.get(i).setBackground(Color.green);
+        }
         for (int i = 0; i < MyC.getAppH().size(); ++i) {
             for (int j = 0; j < MyB.size(); ++j) {
-                if (MyC.getAppH(i).getAivalable() == false) {
+                if (MyC.getAppH(i).getAivalable() == false
+                        && dateFormat.format(MyC.getAppH(i).getDate()).equals(date1)) {
+                    
                     if (MyC.getAppH(i).getTime().matches(MyB.get(j).getText())) {
-                        MyB.get(j).setEnabled(false);
+                            MyB.get(j).setEnabled(false);
+                            MyB.get(j).setBackground(Color.red);
+                            
                     }
+                   
                 }
+              
+
             }
 
         }
@@ -1303,6 +1364,7 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
 
+        MyP.chargeAllAppointment();
         jPanel7.setVisible(false);
         String data[][] = new String[MyP.getApp().size()][6];
         String columns[] = {"Doctor", "Patient", "Reason", "Day", "Hour", "Clinic"};
@@ -1326,6 +1388,9 @@ public class JFrame extends javax.swing.JFrame {
         MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
                 jButton18.getText(), String.valueOf(jComboBox1.getSelectedItem()),
                 jTextField14.getText(), jDateChooser1.getDate());
+        jButton18.setEnabled(false);
+        jButton18.setBackground(Color.red);
+
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -1333,8 +1398,84 @@ public class JFrame extends javax.swing.JFrame {
         MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
                 jButton23.getText(), String.valueOf(jComboBox1.getSelectedItem()),
                 jTextField14.getText(), jDateChooser1.getDate());
-        
+        jButton23.setEnabled(false);
+        jButton23.setBackground(Color.red);
+
     }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+
+        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton20.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate());
+      jButton20.setEnabled(false);
+        jButton20.setBackground(Color.red);
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton21.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate());
+        jButton21.setEnabled(false);
+        jButton21.setBackground(Color.red);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton22.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate());
+              jButton22.setEnabled(false);
+        jButton22.setBackground(Color.red); // TODO add your handling code here:
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton24.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate());
+        jButton24.setEnabled(false);
+        jButton24.setBackground(Color.red);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton25.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate());
+        jButton25.setEnabled(false);
+        jButton25.setBackground(Color.red);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton26.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate());
+        jButton26.setEnabled(false);
+        jButton26.setBackground(Color.red);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton27.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate());
+        jButton27.setEnabled(false);
+        jButton27.setBackground(Color.red);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jDateChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser1PropertyChange
+       
+    }//GEN-LAST:event_jDateChooser1PropertyChange
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+         MyP.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()),
+                jButton28.getText(), String.valueOf(jComboBox1.getSelectedItem()),
+                jTextField14.getText(), jDateChooser1.getDate()); 
+         jButton28.setEnabled(false);
+        jButton28.setBackground(Color.red);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton28ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1362,7 +1503,7 @@ public class JFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+            
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
