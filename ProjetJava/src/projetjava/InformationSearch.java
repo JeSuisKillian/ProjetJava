@@ -5,6 +5,7 @@
  */
 package projetjava;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -274,6 +275,31 @@ public class InformationSearch {
             e.printStackTrace();
         }
     }
+    
+    public ArrayList NameDoctor()
+    {
+        ArrayList<String> nameDoc= new ArrayList<>();
+        
+        try {
+          
+            PreparedStatement st= conn.prepareStatement("SELECT Surname FROM Doctors");
+            ResultSet r1 = st.executeQuery();
+            
+            while(r1.next())
+            {
+             nameDoc.add(r1.getString(1));
+                
+            }
+           
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return nameDoc;
+    }
+    
+    
     public Patients getP()
     {
         return MyP;
