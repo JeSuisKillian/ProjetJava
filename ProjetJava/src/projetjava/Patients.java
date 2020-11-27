@@ -27,60 +27,62 @@ public class Patients {
     private String m_password;
     private String m_adress;
     private ArrayList<Appointment> m_PaApp = new ArrayList<>();
-  
-
 
     public Patients() {
-        
+
     }
 
-    public void setsurName(String name)
-    {
-        m_surName=name;
-    }
-    public void setfirstName(String name)
-    {
-        m_firstName=name;
-    }
-    public void setAge(String age)
-    {
-        m_age=age;
-    }
-    public void setGender(String gender)
-    {
-        m_gender=gender;
+    public void setsurName(String name) {
+        m_surName = name;
     }
 
-    public void setMail(String mail)
-    {
-        m_mail=mail;
+    public void setfirstName(String name) {
+        m_firstName = name;
     }
-    public void setPassword(String password)
-    {
+
+    public void setAge(String age) {
+        m_age = age;
+    }
+
+    public void setGender(String gender) {
+        m_gender = gender;
+    }
+
+    public void setMail(String mail) {
+        m_mail = mail;
+    }
+
+    public void setPassword(String password) {
         m_password = password;
     }
 
-    public void setAdress(String adress)
-    {
+    public void setAdress(String adress) {
         m_adress = adress;
     }
 
-    public void setApp(Appointment App)
-    {
+    public void setApp(Appointment App) {
         m_PaApp.add(App);
     }
-    public String getName()
-    {
+
+     public String getFirstName() {
+        return m_firstName;
+    }
+    public String getName() {
         return m_surName;
     }
-    
-
-    
-    
-
-    
-
-    
+     public String getAge() {
+        return m_age;
+    }
+     public String getGender()
+     {
+         return m_gender;
+     }
+      public String getMail() {
+        return m_mail;
+    }
+      public String getAdress() {
+        return m_adress;
+    }
 
     public ArrayList getApp() {
         return m_PaApp;
@@ -90,5 +92,4 @@ public class Patients {
         return m_PaApp.get(i);
     }
 
-  
 }

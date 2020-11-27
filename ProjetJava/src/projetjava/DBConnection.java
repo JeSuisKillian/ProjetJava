@@ -15,6 +15,7 @@ import java.util.Scanner;
  */
 public class DBConnection {
 
+
     public DBConnection() {
 
     }
