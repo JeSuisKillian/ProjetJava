@@ -61,9 +61,9 @@ public class InformationSearch {
                 MyP.setGender(r1.getString(4));
                 MyP.setMail(r1.getString(5));
                 MyP.setPassword(r1.getString(6));
-                
+
             }
-                conn.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -273,94 +273,76 @@ public class InformationSearch {
             e.printStackTrace();
         }
     }
-    
-    public ArrayList getInfoP()
-    {
+
+    public ArrayList getInfoP() {
         ArrayList<String> info = new ArrayList<>();
-        
-        try{
+
+        try {
             conn = new DBConnection().getConnection();
             PreparedStatement st = conn.prepareStatement("SELECT MAIL FROM Patients");
             ResultSet r1 = st.executeQuery();
 
             while (r1.next()) {
-               
+
                 String mail = r1.getString("MAIL");
                 info.add(mail);
             }
-           conn.close();
-        }
-        catch(SQLException e)
-        {
+            conn.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return info;
     }
-    
-    public ArrayList NameDoctor()
-    {
-        ArrayList<String> nameDoc= new ArrayList<>();
-        
+
+    public ArrayList NameDoctor() {
+        ArrayList<String> nameDoc = new ArrayList<>();
+
         try {
-          
-            PreparedStatement st= conn.prepareStatement("SELECT Surname FROM Doctors");
+            conn = new DBConnection().getConnection();
+            PreparedStatement st = conn.prepareStatement("SELECT Surname FROM Doctors");
             ResultSet r1 = st.executeQuery();
-            
-            while(r1.next())
-            {
-             nameDoc.add(r1.getString(1));
-                
+
+            while (r1.next()) {
+                nameDoc.add(r1.getString(1));
+
             }
-           
-        }
-        catch(SQLException e)
-        {
+            conn.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return nameDoc;
     }
-    
-    
-    public Patients getP()
-    {
+
+    public Patients getP() {
         return MyP;
     }
-    public Clinics getC()
-    {
+
+    public Clinics getC() {
         return MyC;
     }
-    
-    public boolean checkDocH(String doc, String clinic)
 
-    {
-       boolean DocHMatches = false;
-        
-        try{
+    public boolean checkDocH(String doc, String clinic) {
+        boolean DocHMatches = false;
+
+        try {
             conn = new DBConnection().getConnection();
             PreparedStatement st = conn.prepareStatement("SELECT*FROM Doctors WHERE(SURNAME=? AND Clinic=?)");
             st.setString(1, doc);
-            st.setString(2,clinic);
+            st.setString(2, clinic);
             ResultSet r1 = st.executeQuery();
 
-          if(r1 != null)
-          {
-              DocHMatches = true;
-          }
-           conn.close();
-        }
-        catch(SQLException e)
-        {
+            if (r1 != null) {
+                DocHMatches = true;
+            }
+            conn.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-     return DocHMatches;      
-  }
-    
 
-   
+        return DocHMatches;
+    }
 
-    public Doctors getD()
-    {
+    public Doctors getD() {
         return MyD;
     }
 }

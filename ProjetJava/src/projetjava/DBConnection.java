@@ -15,29 +15,33 @@ import java.util.Scanner;
  */
 public class DBConnection {
 
+    Connection conn;
 
     public DBConnection() {
 
     }
 
-    public Connection getConnection() throws Exception {
-        String URL = null, password= null, user= null;
+    public Connection getConnection() {
+        String URL = null, password = null, user = null;
         try {
+
             File file = new File("DBLogIn.txt");
             Scanner inputFile = new Scanner(file);
 
             URL = inputFile.nextLine();
             password = inputFile.nextLine();
-            user = inputFile.nextLine();            
-
-            //String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
-            //String password = "Amoxcilline98";
-            //String user = "219005";
-            inputFile.close();
+            user = inputFile.nextLine();
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         }
 
-        return DriverManager.getConnection(URL, user, password);
+        try {
+            conn = DriverManager.getConnection(URL, user, password);
+            //inputFile.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return conn;
     }
 }

@@ -5,7 +5,6 @@
  */
 package projetjava;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.Date;
@@ -1289,7 +1288,6 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-
         jComboBox1.removeAllItems();
         jComboBox2.removeAllItems();
 
@@ -1308,12 +1306,10 @@ public class JFrame extends javax.swing.JFrame {
                 jComboBox2.addItem(MyI.NameDoctor().get(j));
             }
 
-
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
 
         jPanel1.setVisible(false);
 
@@ -1352,8 +1348,6 @@ public class JFrame extends javax.swing.JFrame {
                 jComboBox2.addItem(MyI.NameDoctor().get(j));
             }
 
-
-                 
         } else {
             jTextField1.setText(null);
             jPasswordField1.setText(null);
@@ -1545,7 +1539,6 @@ public class JFrame extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
         MyI.setClinic();
-        
 
         String date1 = dateFormat.format(date);
         MyI.chargeAllAppointmentC(String.valueOf(jComboBox1.getSelectedItem()));
@@ -1573,9 +1566,6 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         // TODO add your handling code here:
-
-
-        
 
         jPanel7.setVisible(false);
         MyI.chargeAllAppointmentP();
@@ -1635,7 +1625,7 @@ public class JFrame extends javax.swing.JFrame {
         jDateChooser1.setCalendar(null);//vider la case choisie par l'utilisateur avant
         jPasswordField1.setText(null);
         jPasswordField2.setText(null);
-        
+
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
@@ -1656,10 +1646,11 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         //A FAIRE 
         jComboBox3.removeAllItems();
-        
-        for(int i=0;i<MyI.getInfoP().size();++i)
+
+        for (int i = 0; i < MyI.getInfoP().size(); ++i) {
             jComboBox3.addItem(MyI.getInfoP().get(i));
-       
+        }
+
         jPanel6.setVisible(false);
         jPanel4.setVisible(false);
         jPanel5.setVisible(false);
@@ -1669,21 +1660,21 @@ public class JFrame extends javax.swing.JFrame {
         //jPanel9.add(jPanel12, BorderLayout.NORTH);
         jPanel12.setVisible(true);
         jPanel13.setVisible(false);
-        
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void RecherchePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecherchePatientActionPerformed
-                               
+
         jTextPane1.setEditable(false);
         MyI.setPatient(String.valueOf(jComboBox3.getSelectedItem()));
-        jTextPane1.setText("SURNAME :" + MyI.getP().getName()+"\n"
-                          +"FIRSTNAME :"+MyI.getP().getFirstName()+"\n"
-                          +"AGE : "+MyI.getP().getAge()+"\n"
-                          +"MAIL :"+MyI.getP().getMail()+"\n"
-                          +"ADRESS :"+MyI.getP().getAdress()+"\n");
+        jTextPane1.setText("SURNAME :" + MyI.getP().getName() + "\n"
+                + "FIRSTNAME :" + MyI.getP().getFirstName() + "\n"
+                + "AGE : " + MyI.getP().getAge() + "\n"
+                + "MAIL :" + MyI.getP().getMail() + "\n"
+                + "ADRESS :" + MyI.getP().getAdress() + "\n");
         jPanel13.setVisible(true);
         jScrollPane4.setVisible(true);
-       
+
         MyI.chargeAllAppointmentP();
         String data[][] = new String[MyI.getP().getApp().size()][6];
         String columns[] = {"Doctor", "Patient", "Reason", "Day", "Hour", "Clinic"};
@@ -1698,11 +1689,10 @@ public class JFrame extends javax.swing.JFrame {
         }
 
         jTable2.setModel(new DefaultTableModel(data, columns));
-         jScrollPane3.setVisible(true);
-        
+        jScrollPane3.setVisible(true);
+
 // TODO add your handling code here:
     }//GEN-LAST:event_RecherchePatientActionPerformed
-
 
     /**
      * @param args the command line arguments
