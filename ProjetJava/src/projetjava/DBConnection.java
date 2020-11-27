@@ -12,17 +12,25 @@ import java.sql.*;
  */
 public class DBConnection {
     
+    private Connection conn;
+    
     public DBConnection()
     {
         
     }
     
-   public Connection getConnection() throws Exception {
-    
+   public Connection getConnection()  {
+    try{
+        
         String URL = "jdbc:mysql://mysql-pierre-alexandre.alwaysdata.net:3306/pierre-alexandre_caresystem";
         String password = "Amoxcilline98";
         String user = "219005";
-
-    return DriverManager.getConnection(URL, user, password);
+       conn = DriverManager.getConnection(URL, user, password);
+    }
+    catch(SQLException e)
+    {
+        e.printStackTrace();
+    }
+    return conn;
   }
 }
