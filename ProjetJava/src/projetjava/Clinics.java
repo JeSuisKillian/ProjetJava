@@ -44,4 +44,14 @@ public class Clinics {
     {
         m_ClApp.add(App);
     }
+    public int getNameClinicSize()
+    {
+        return m_name.size();
+    }
+            
+            
+    public String getClinicName(int i)
+    {
+        return m_name.get(i);
+    }
 }
