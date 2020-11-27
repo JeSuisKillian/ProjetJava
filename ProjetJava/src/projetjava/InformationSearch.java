@@ -357,13 +357,7 @@ public class InformationSearch {
   }
     
 
-    public Patients getP() {
-        return MyP;
-    }
-
-    public Clinics getC() {
-        return MyC;
-    }
+   
 
     public Doctors getD()
     {
