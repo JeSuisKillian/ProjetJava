@@ -132,9 +132,9 @@ public class InformationSearch {
             PreparedStatement st = conn.prepareStatement("select mail from Doctors");
             ResultSet r1 = st.executeQuery();
             String usernameCounter;
-            if (r1.next()) {
+            while(r1.next()) {
                 usernameCounter = r1.getString("mail");
-                if (usernameCounter.equals(mail)) {
+                if(usernameCounter.equals(mail)) {
                     usernameExists = true;
                 }
             }

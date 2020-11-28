@@ -70,12 +70,12 @@ public class DataUpdate {
     }
 
     public void addDoctors(String surName, String firstName, String mail,
-            String pass, String specialisation, String qualification, String investment, String clinic) {
+            String pass, String specialisation, String qualification, String investment, String clinic, String clinic2) {
         if (MyI.testIDDoctor(mail) == false) {
 
             try {
                 conn = new DBConnection().getConnection();
-                String sql = "insert into Doctors (SURNAME, FIRSTNAME, MAIL,PASSWORD, SPECIALISATIONS, QUALIFICATIONS,INVESTMENT,CLINIC) values (?,?,?,?,?,?,?,?)";
+                String sql = "insert into Doctors (SURNAME, FIRSTNAME, MAIL,PASSWORD, SPECIALISATIONS, QUALIFICATIONS,INVESTMENT,CLINIC,Clinic2) values (?,?,?,?,?,?,?,?,?)";
 
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, surName);
@@ -86,6 +86,7 @@ public class DataUpdate {
                 st.setString(6, qualification);
                 st.setString(7, investment);
                 st.setString(8, clinic);
+                st.setString(9, clinic2);
                 st.execute();
                 conn.close();
             } catch (SQLException e) {
