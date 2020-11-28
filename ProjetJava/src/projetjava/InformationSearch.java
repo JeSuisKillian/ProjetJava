@@ -7,6 +7,7 @@ package projetjava;
 
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -322,23 +323,27 @@ public class InformationSearch {
     }
 
     public boolean checkDocH(String doc, String clinic) {
-        boolean DocHMatches = false;
+        boolean DocHMatches = true;
 
         try {
             conn = new DBConnection().getConnection();
-            PreparedStatement st = conn.prepareStatement("SELECT*FROM Doctors WHERE(SURNAME=? AND Clinic=?)");
+            PreparedStatement st = conn.prepareStatement("SELECT*FROM Doctors WHERE(SURNAME=? AND (Clinic=? OR Clinic2=?))");
             st.setString(1, doc);
             st.setString(2, clinic);
+            st.setString(3, clinic);
             ResultSet r1 = st.executeQuery();
 
-            if (r1 != null) {
-                DocHMatches = true;
+            if (r1.next()==false) {
+                DocHMatches = false;
+               JOptionPane.showMessageDialog(null, "This doctor is not availbale in this clinic, please pick an other one");            
             }
+           
+            
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+       
         return DocHMatches;
     }
 

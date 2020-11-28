@@ -1522,7 +1522,7 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
         // TODO add your handling code here:
-        jPanel8.setVisible(true);
+        
 
         jButton30.setText("8:00");
         jButton31.setText("9:00");
@@ -1535,32 +1535,34 @@ public class JFrame extends javax.swing.JFrame {
         jButton38.setText("17:00");
         jButton39.setText("18:00");
 
-        Date date = jDateChooser1.getDate();
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        if (MyI.checkDocH(String.valueOf(jComboBox2.getSelectedItem()), String.valueOf(jComboBox1.getSelectedItem())) == true)
+        {
+            jPanel8.setVisible(true);
+            Date date = jDateChooser1.getDate();
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-        MyI.setClinic();
+            String date1 = dateFormat.format(date);
+            MyI.chargeAllAppointmentC(String.valueOf(jComboBox1.getSelectedItem()));
+            for (int i = 0; i < MyB.size(); ++i) {
+                MyB.get(i).setEnabled(true);
+                MyB.get(i).setBackground(Color.green);
+            }
+            for (int i = 0; i < MyI.getC().getAppH().size(); ++i) {
+                for (int j = 0; j < MyB.size(); ++j) {
+                    if (MyI.getC().getAppH(i).getAivalable() == false
+                            && dateFormat.format(MyI.getC().getAppH(i).getDate()).equals(date1)) {
 
-        String date1 = dateFormat.format(date);
-        MyI.chargeAllAppointmentC(String.valueOf(jComboBox1.getSelectedItem()));
-        for (int i = 0; i < MyB.size(); ++i) {
-            MyB.get(i).setEnabled(true);
-            MyB.get(i).setBackground(Color.green);
-        }
-        for (int i = 0; i < MyI.getC().getAppH().size(); ++i) {
-            for (int j = 0; j < MyB.size(); ++j) {
-                if (MyI.getC().getAppH(i).getAivalable() == false
-                        && dateFormat.format(MyI.getC().getAppH(i).getDate()).equals(date1)) {
+                        if (MyI.getC().getAppH(i).getTime().matches(MyB.get(j).getText())) {
+                            MyB.get(j).setEnabled(false);
+                            MyB.get(j).setBackground(Color.red);
 
-                    if (MyI.getC().getAppH(i).getTime().matches(MyB.get(j).getText())) {
-                        MyB.get(j).setEnabled(false);
-                        MyB.get(j).setBackground(Color.red);
+                        }
 
                     }
 
                 }
 
             }
-
         }
     }//GEN-LAST:event_jButton40ActionPerformed
 
