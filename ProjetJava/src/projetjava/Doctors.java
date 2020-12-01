@@ -68,6 +68,14 @@ public class Doctors {
     {
         return m_surName;
     }
+    public ArrayList getDocApp()
+    {
+        return m_DocApp;
+    }
+    public Appointment getDocApp(int i)
+    {
+        return m_DocApp.get(i);
+    }
 
     
 
