@@ -1804,7 +1804,9 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
             jPanel9.setVisible(false);
             jPanel11.setVisible(true);
-            jTable3.setVisible(false);// TODO add your handling code here:
+            jScrollPane1.setVisible(false);
+            jTable3.setVisible(false);
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -1817,6 +1819,7 @@ public class JFrame extends javax.swing.JFrame {
             data[i][0] = temp.get(i);
         }
         jTable3.setVisible(true);
+        jScrollPane1.setVisible(true);
         jTable3.setModel(new DefaultTableModel(data, columns));
         
         
