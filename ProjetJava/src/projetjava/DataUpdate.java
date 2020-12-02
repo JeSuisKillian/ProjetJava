@@ -95,4 +95,25 @@ public class DataUpdate {
         }
     }
 
+    public void updatePatient(String surName, String firstName, String age, String adress,
+            String gender, String mail) {
+        try {
+            conn = new DBConnection().getConnection();
+            String sql = "UPDATE Patients SET surname=?, firstname=?, age=?, gender=?, adresse=? WHERE mail =?";
+            PreparedStatement st = conn.prepareStatement(sql);
+
+            st.setString(1, surName);
+            st.setString(2, firstName);
+            st.setString(3, age);
+            st.setString(4, gender);
+            st.setString(5, adress);
+            st.setString(6, mail);
+            st.execute();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

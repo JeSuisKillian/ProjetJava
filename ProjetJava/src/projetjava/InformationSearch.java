@@ -62,6 +62,7 @@ public class InformationSearch {
                 MyP.setGender(r1.getString(4));
                 MyP.setMail(r1.getString(5));
                 MyP.setPassword(r1.getString(6));
+                MyP.setAdress(r1.getString(7));
 
             }
             conn.close();
