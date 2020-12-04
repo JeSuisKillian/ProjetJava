@@ -81,7 +81,7 @@ public class JFrame extends javax.swing.JFrame {
             for (int i = 0; i < max + 1; i++) {
                 jProgressBar1.setValue(i);
                 try {
-                    sleep(150);
+                    sleep(180);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -2072,7 +2072,7 @@ public class JFrame extends javax.swing.JFrame {
             MyU.addPatients(jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jPasswordField2.getText());
 
             jPanel2.setVisible(false);
-            jPanel7.setVisible(true);
+            jPanel1.setVisible(true);
             for (int i = 0; i < MyI.getC().getNameClinicSize(); i++) {
                 jComboBox1.addItem(MyI.getC().getClinicName(i));
             }
@@ -2082,6 +2082,8 @@ public class JFrame extends javax.swing.JFrame {
             }
 
         }
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -2265,9 +2267,19 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         // TODO add your handling code here:
-        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()), jButton32.getText(), String.valueOf(jComboBox1.getSelectedItem()), jTextField12.getText(), jDateChooser1.getDate());
-        jButton32.setEnabled(false);
+       
+        MyI.setDoctors(MyI.returnMail(String.valueOf(jComboBox2.getSelectedItem())));
+        MyI.chargeAllDocAppointment();
+        if (MyI.checkHour(new Appointment(jDateChooser1.getDate(), jButton30.getText(),
+                jComboBox1.getSelectedItem().toString(), MyI.getP().getName(),
+                jComboBox2.getSelectedItem().toString(), jTextField12.getText(), false)) == true) {
+            jButton32.setEnabled(false);
         jButton32.setBackground(Color.red);
+
+        } else {
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()), jButton32.getText(), String.valueOf(jComboBox1.getSelectedItem()), jTextField12.getText(), jDateChooser1.getDate());
+        
+        }
 
     }//GEN-LAST:event_jButton32ActionPerformed
 
@@ -2412,7 +2424,9 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+
         // TODO add your handling code here:
+        jProgressBar1.setValue(0);
         jPanel7.setVisible(false);
         jPanel1.setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
@@ -2425,6 +2439,7 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
+        jProgressBar1.setValue(0);
         jPanel7.setVisible(false);
         jPanel8.setVisible(false);
         jPanel3.setVisible(true);

@@ -354,7 +354,8 @@ public class InformationSearch {
         
         for(int i=0; i<MyD.getDocApp().size();++i)
         {
-            if(MyD.getDocApp(i).getTime().equals(App.getTime()))
+            if(MyD.getDocApp(i).getTime().equals(App.getTime())&&
+                    MyD.getDocApp(i).getDate().equals(App.getDate()))
             {
                 System.out.println("AH");
                 checkHour = true;
