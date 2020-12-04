@@ -94,6 +94,22 @@ public class DataUpdate {
             }
         }
     }
+    
+    public void DeletePatient(String mail)
+    {
+        try {
+            conn = new DBConnection().getConnection();
+            String sql = "DELETE from Patients where mail=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, mail);
+            st.execute();
+            conn.close();
+            System.out.println("Patient deleted");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void updatePatient(String surName, String firstName, String age, String adress,
             String gender, String mail) {
@@ -115,5 +131,7 @@ public class DataUpdate {
             e.printStackTrace();
         }
     }
+    
+    
 
 }

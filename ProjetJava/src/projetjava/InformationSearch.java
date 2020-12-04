@@ -385,7 +385,55 @@ public class InformationSearch {
         System.out.println(mail);
         return mail;
     }
-    
+    public String returnSurname(String mail)
+    {
+        String surname = " ",firstName= " ",name;
+        
+        try {
+            conn = new DBConnection().getConnection();
+            PreparedStatement st = conn.prepareStatement("select surname from Patients  where mail=?");
+            PreparedStatement st1 = conn.prepareStatement("select firstname from Patients  where mail=?");
+            st.setString(1, mail);
+            st1.setString(1, mail);
+            ResultSet r1 = st.executeQuery();
+            ResultSet r2 = st1.executeQuery();
+            
+            while(r1.next() && r2.next())
+            {
+                surname = r1.getString(1);
+                firstName = r2.getString(1);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        name=surname + " " + firstName;
+        System.out.println(name);
+        return name;
+    }
+    public String returnPatientMail(String name)
+    {
+        String mail = " ";
+
+        try {
+            conn = new DBConnection().getConnection();
+            PreparedStatement st = conn.prepareStatement("select mail from Patients where surname=?");
+            st.setString(1, name);
+            ResultSet r1 = st.executeQuery();
+            
+            while(r1.next())
+            {
+                mail = r1.getString(1);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        System.out.println(mail);
+        return mail;
+    }
     public ArrayList AdvancedResearch(String reason)
     {
         ArrayList<String> temp = new ArrayList<>();
