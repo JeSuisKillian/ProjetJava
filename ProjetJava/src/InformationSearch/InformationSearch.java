@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import DAO.Appointment;
 import DAO.Clinics;
-import projetjava.DBConnection;
 import DAO.Doctors;
 import DAO.Patients;
 
@@ -27,8 +26,8 @@ public class InformationSearch implements InformationSearchInterface {
     private Doctors MyD;
     private Clinics MyC;
 
-    public InformationSearch() {
-
+    public InformationSearch(Connection c) {
+            conn = c;
     }
 
     
@@ -37,7 +36,7 @@ public class InformationSearch implements InformationSearchInterface {
         boolean usernameExists = false;
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("select mail from Patients");
             ResultSet r1 = st.executeQuery();
             String usernameCounter;
@@ -48,7 +47,7 @@ public class InformationSearch implements InformationSearchInterface {
                 }
             }
 
-            conn.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,7 +60,7 @@ public class InformationSearch implements InformationSearchInterface {
 
         MyP = new Patients();
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("select*from Patients where mail = ?");
             st.setString(1, mail);
             ResultSet r1 = st.executeQuery();
@@ -75,7 +74,7 @@ public class InformationSearch implements InformationSearchInterface {
                 MyP.setAdress(r1.getString(7));
 
             }
-            conn.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -86,7 +85,7 @@ public class InformationSearch implements InformationSearchInterface {
         boolean IndentificationOK = false;
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st1 = conn.prepareStatement("select mail from Patients");
             PreparedStatement st2 = conn.prepareStatement("select password from Patients");
             ResultSet r1 = st1.executeQuery();
@@ -102,7 +101,7 @@ public class InformationSearch implements InformationSearchInterface {
                     return IndentificationOK;
                 }
             }
-            conn.close();
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -115,7 +114,7 @@ public class InformationSearch implements InformationSearchInterface {
     public void chargeAllAppointmentP() {
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("SELECT*FROM Appointment JOIN Patients ON Appointment.Patient = Patients.Surname WHERE Patients.Surname = ?");
             st.setString(1, MyP.getName());
             ResultSet r1 = st.executeQuery();
@@ -131,7 +130,7 @@ public class InformationSearch implements InformationSearchInterface {
                 MyP.setApp(new Appointment(date, time, clinic, patient, doctor, reason, available));
 
             }
-            conn.close();
+          
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -142,7 +141,7 @@ public class InformationSearch implements InformationSearchInterface {
         boolean usernameExists = false;
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("select mail from Doctors");
             ResultSet r1 = st.executeQuery();
             String usernameCounter;
@@ -152,7 +151,7 @@ public class InformationSearch implements InformationSearchInterface {
                     usernameExists = true;
                 }
             }
-            conn.close();
+           
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -164,7 +163,7 @@ public class InformationSearch implements InformationSearchInterface {
     public void setDoctors(String mail) {
         MyD = new Doctors();
         try {
-            conn = new DBConnection().getConnection();
+          
 
             PreparedStatement st = conn.prepareStatement("select*from Doctors where mail = ?");
             st.setString(1, mail);
@@ -179,7 +178,7 @@ public class InformationSearch implements InformationSearchInterface {
                 MyD.setInvestment(r1.getString(7));
             }
 
-            conn.close();
+           
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -191,7 +190,7 @@ public class InformationSearch implements InformationSearchInterface {
         boolean IndentificationOK = false;
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st1 = conn.prepareStatement("select mail from Doctors");
             PreparedStatement st2 = conn.prepareStatement("select password from Doctors");
             ResultSet r1 = st1.executeQuery();
@@ -212,7 +211,7 @@ public class InformationSearch implements InformationSearchInterface {
                 }
             }
 
-            conn.close();
+           
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -224,7 +223,7 @@ public class InformationSearch implements InformationSearchInterface {
     public void chargeAllDocAppointment() {
 
         try {
-            conn = new DBConnection().getConnection();
+           
             PreparedStatement st = conn.prepareStatement("SELECT*FROM Appointment WHERE Doctor=?");
             st.setString(1, MyD.getDocName());
             ResultSet r1 = st.executeQuery();
@@ -240,7 +239,7 @@ public class InformationSearch implements InformationSearchInterface {
                 MyD.setAppDoc(new Appointment(date, time, clinic, patient, doctor, reason, available));
 
             }
-            conn.close();
+         
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -252,7 +251,7 @@ public class InformationSearch implements InformationSearchInterface {
         MyC = new Clinics();
         try {
 
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("select name from Clinics");
             ResultSet r1 = st.executeQuery();
             while (r1.next()) {
@@ -260,7 +259,7 @@ public class InformationSearch implements InformationSearchInterface {
 
             }
 
-            conn.close();
+          
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -270,7 +269,7 @@ public class InformationSearch implements InformationSearchInterface {
     public void chargeAllAppointmentC(String name) {
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("SELECT*FROM Appointment WHERE Clinic=?");
             st.setString(1, name);
             ResultSet r1 = st.executeQuery();
@@ -288,7 +287,7 @@ public class InformationSearch implements InformationSearchInterface {
                 MyC.setAppH(new Appointment(date, time, clinic, patient, doctor, reason, available));
 
             }
-            conn.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -299,7 +298,7 @@ public class InformationSearch implements InformationSearchInterface {
         ArrayList<String> info = new ArrayList<>();
 
         try {
-            conn = new DBConnection().getConnection();
+           
             PreparedStatement st = conn.prepareStatement("SELECT MAIL FROM Patients");
             ResultSet r1 = st.executeQuery();
 
@@ -308,7 +307,7 @@ public class InformationSearch implements InformationSearchInterface {
                 String mail = r1.getString("MAIL");
                 info.add(mail);
             }
-            conn.close();
+           
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -320,7 +319,7 @@ public class InformationSearch implements InformationSearchInterface {
         ArrayList<String> nameDoc = new ArrayList<>();
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("SELECT Surname FROM Doctors");
             ResultSet r1 = st.executeQuery();
 
@@ -328,7 +327,7 @@ public class InformationSearch implements InformationSearchInterface {
                 nameDoc.add(r1.getString(1));
 
             }
-            conn.close();
+           
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -348,7 +347,7 @@ public class InformationSearch implements InformationSearchInterface {
         boolean DocHMatches = true;
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("SELECT*FROM Doctors WHERE(SURNAME=? AND (Clinic=? OR Clinic2=?))");
             st.setString(1, doc);
             st.setString(2, clinic);
@@ -360,7 +359,7 @@ public class InformationSearch implements InformationSearchInterface {
                 JOptionPane.showMessageDialog(null, "This doctor is not availbale in this clinic, please pick an other one");
             }
 
-            conn.close();
+          
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -386,7 +385,7 @@ public class InformationSearch implements InformationSearchInterface {
         String mail = " ";
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("select mail from Doctors where surname=?");
             st.setString(1, name);
             ResultSet r1 = st.executeQuery();
@@ -406,7 +405,7 @@ public class InformationSearch implements InformationSearchInterface {
         String surname = " ", firstName = " ", name;
 
         try {
-            conn = new DBConnection().getConnection();
+           
             PreparedStatement st = conn.prepareStatement("select surname from Patients  where mail=?");
             PreparedStatement st1 = conn.prepareStatement("select firstname from Patients  where mail=?");
             st.setString(1, mail);
@@ -432,7 +431,7 @@ public class InformationSearch implements InformationSearchInterface {
         ArrayList<String> temp = new ArrayList<>();
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("select surname from Patients");
             ResultSet r1 = st.executeQuery();
            
@@ -454,7 +453,7 @@ public class InformationSearch implements InformationSearchInterface {
         String mail = " ";
 
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("select mail from Patients where surname=?");
             st.setString(1, name);
             ResultSet r1 = st.executeQuery();
@@ -473,7 +472,7 @@ public class InformationSearch implements InformationSearchInterface {
     public ArrayList AdvancedResearch(String reason) {
         ArrayList<String> temp = new ArrayList<>();
         try {
-            conn = new DBConnection().getConnection();
+            
             PreparedStatement st = conn.prepareStatement("SELECT DISTINCT surname FROM Patients JOIN Appointment ON Patients.Surname = Appointment.Patient WHERE Appointment.Reason = ?");
             st.setString(1, reason);
             ResultSet r1 = st.executeQuery();

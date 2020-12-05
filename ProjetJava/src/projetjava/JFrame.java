@@ -8,9 +8,7 @@ package projetjava;
 import DAO.Appointment;
 import DataUpdate.DataUpdate;
 import InformationSearch.InformationSearch;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import static java.lang.System.exit;
 import java.util.Date;
 import java.sql.*;
@@ -30,72 +28,24 @@ public class JFrame extends javax.swing.JFrame {
     /**
      * Creates new form JFrame
      */
-    private InformationSearch MyI = new InformationSearch();
-    private DataUpdate MyU = new DataUpdate(MyI);
+    private InformationSearch MyI;
+    private DataUpdate MyU;
     private ArrayList<JButton> MyB = new ArrayList<>();
-    progress p;
+    private progress p;
     private boolean DelPatient = true;
+    private Connection conn;
 
     public JFrame() {
+
+        conn = new DBConnection().getConnection();
+        MyI = new InformationSearch(conn);
         MyI.setClinic();
+        MyU = new DataUpdate(MyI, conn);
+        
         initComponents();
-        MyB.add(jButton30);
-        MyB.add(jButton31);
-        MyB.add(jButton32);
-        MyB.add(jButton33);
-        MyB.add(jButton34);
-        MyB.add(jButton35);
-        MyB.add(jButton36);
-        MyB.add(jButton37);
-        MyB.add(jButton38);
-        MyB.add(jButton39);
-        jPanel2.setVisible(false);
-        jPanel1.setVisible(false);
-        jPanel4.setVisible(false);
-        jPanel5.setVisible(false);
-        jPanel6.setVisible(false);
-        jPanel7.setVisible(false);
-        jPanel8.setVisible(false);
-        jPanel9.setVisible(false);
-        jPanel10.setVisible(false);
-        jPanel11.setVisible(false);
-        jPanel12.setVisible(false);
-        jPanel13.setVisible(false);
-        jPanel14.setVisible(false);
-        jPanel24.setVisible(false);
-        jPanel26.setVisible(false);
+        setComponents();
 
         this.setLocationRelativeTo(null);
-    }
-
-    public class progress extends Thread {
-
-        JProgressBar bar;
-
-        public progress(JProgressBar b) {
-            bar = jProgressBar1;
-        }
-
-        public void run() {
-            int max = 50;
-            int min = 0;
-
-            bar.setMaximum(max);
-            bar.setMinimum(min);
-
-            for (int i = 0; i < max + 1; i++) {
-                jProgressBar1.setValue(i);
-                try {
-                    sleep(180);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (jProgressBar1.getPercentComplete() == 1.0) {
-                jPanel1.setVisible(false);
-                jPanel7.setVisible(true);
-            }
-        }
     }
 
     /**
@@ -1909,7 +1859,7 @@ public class JFrame extends javax.swing.JFrame {
         jPanel25.setBackground(new java.awt.Color(242, 217, 132));
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel47.setText("Avdvanced reason search");
+        jLabel47.setText("Advanced reason search");
 
         jButton8.setBackground(new java.awt.Color(255, 51, 51));
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -2181,6 +2131,11 @@ public class JFrame extends javax.swing.JFrame {
         jButton52.setForeground(new java.awt.Color(255, 255, 255));
         jButton52.setText("X");
         jButton52.setBorder(null);
+        jButton52.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton52ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
@@ -3003,6 +2958,7 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+
         exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton27ActionPerformed
 
@@ -3017,6 +2973,7 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
+        closeConnection();
         exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton41ActionPerformed
 
@@ -3084,41 +3041,51 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton51ActionPerformed
 
     private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
-        // TODO add your handling code here:
+
+        closeConnection();// TODO add your handling code here:
         exit(0);
     }//GEN-LAST:event_jButton42ActionPerformed
 
     private void jButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton43ActionPerformed
-        // TODO add your handling code here:
+
+        closeConnection();// TODO add your handling code here:
         exit(0);
     }//GEN-LAST:event_jButton43ActionPerformed
 
     private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed
-        // TODO add your handling code here:
+        closeConnection(); // TODO add your handling code here:
         exit(0);
     }//GEN-LAST:event_jButton44ActionPerformed
 
     private void jButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton45ActionPerformed
-        // TODO add your handling code here:
+        closeConnection(); // TODO add your handling code here:
         exit(0);
     }//GEN-LAST:event_jButton45ActionPerformed
 
     private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
-        // TODO add your handling code here:
+        closeConnection();// TODO add your handling code here:
         exit(0);
     }//GEN-LAST:event_jButton46ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        closeConnection();
         exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-exit(0);        // TODO add your handling code here:
+        closeConnection();
+        exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-exit(0);        // TODO add your handling code here:
+        closeConnection();
+        exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
+        closeConnection();
+        exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton52ActionPerformed
     public boolean IsAnInteger(String AgeValue) {
         int age;
         try {
@@ -3127,6 +3094,42 @@ exit(0);        // TODO add your handling code here:
             return false;
         }
         return true;
+    }
+
+    public void closeConnection() {
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void setComponents() {
+        MyB.add(jButton30);
+        MyB.add(jButton31);
+        MyB.add(jButton32);
+        MyB.add(jButton33);
+        MyB.add(jButton34);
+        MyB.add(jButton35);
+        MyB.add(jButton36);
+        MyB.add(jButton37);
+        MyB.add(jButton38);
+        MyB.add(jButton39);
+        jPanel2.setVisible(false);
+        jPanel1.setVisible(false);
+        jPanel4.setVisible(false);
+        jPanel5.setVisible(false);
+        jPanel6.setVisible(false);
+        jPanel7.setVisible(false);
+        jPanel8.setVisible(false);
+        jPanel9.setVisible(false);
+        jPanel10.setVisible(false);
+        jPanel11.setVisible(false);
+        jPanel12.setVisible(false);
+        jPanel13.setVisible(false);
+        jPanel14.setVisible(false);
+        jPanel24.setVisible(false);
+        jPanel26.setVisible(false);
     }
 
     /**
@@ -3355,4 +3358,35 @@ exit(0);        // TODO add your handling code here:
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+
+    public class progress extends Thread {
+
+        JProgressBar bar;
+
+        public progress(JProgressBar b) {
+            bar = jProgressBar1;
+        }
+
+        public void run() {
+            int max = 50;
+            int min = 0;
+
+            bar.setMaximum(max);
+            bar.setMinimum(min);
+
+            for (int i = 0; i < max + 1; i++) {
+                jProgressBar1.setValue(i);
+                try {
+                    sleep(180);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (jProgressBar1.getPercentComplete() == 1.0) {
+                jPanel1.setVisible(false);
+                jPanel7.setVisible(true);
+            }
+        }
+    }
+
 }

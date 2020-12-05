@@ -7,7 +7,6 @@ package DataUpdate;
 
 import InformationSearch.InformationSearch;
 import java.sql.*;
-import projetjava.DBConnection;
 
 /**
  *
@@ -17,11 +16,13 @@ import projetjava.DBConnection;
 
 public class DataUpdate implements DataUpdateInterface {
 
-    private Connection conn;
+    private final Connection conn;
     private final InformationSearch MyI;
 
-    public DataUpdate(InformationSearch I) {
+    public DataUpdate(InformationSearch I, Connection c) {
         MyI = I;
+        conn = c;
+        
 
     }
 
@@ -31,7 +32,7 @@ public class DataUpdate implements DataUpdateInterface {
         if (MyI.testIDPatient(mail) == false) {
 
             try {
-                conn = new DBConnection().getConnection();
+               
                 String sql = "insert into Patients (SURNAME, FIRSTNAME, AGE, GENDER, MAIL,PASSWORD,ADRESSE) values (?,?,?,?,?,?,?)";
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, surName);
@@ -42,7 +43,7 @@ public class DataUpdate implements DataUpdateInterface {
                 st.setString(6, password);
                 st.setString(7, "ici");
                 st.execute();
-                conn.close();
+               
                 System.out.println("Added Patient");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -54,7 +55,7 @@ public class DataUpdate implements DataUpdateInterface {
     public void chooseAppointment(String doc, String time, String Clinic, String reason, java.util.Date date) {
 
         try {
-            conn = new DBConnection().getConnection();
+           
             java.sql.Date date2 = new java.sql.Date(date.getTime());
             PreparedStatement st1 = conn.prepareStatement("INSERT INTO Appointment(Patient, Doctor, Clinic,Hour, Reason,Date)values (?,?,?,?,?,?)");
             st1.setString(1, MyI.getP().getName());
@@ -68,7 +69,7 @@ public class DataUpdate implements DataUpdateInterface {
 
             PreparedStatement st2 = conn.prepareStatement("UPDATE Appointment SET Available=0 WHERE Patient IS NOT NULL");
             st2.execute();
-            conn.close();
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,7 +82,7 @@ public class DataUpdate implements DataUpdateInterface {
         if (MyI.testIDDoctor(mail) == false) {
 
             try {
-                conn = new DBConnection().getConnection();
+              
                 String sql = "insert into Doctors (SURNAME, FIRSTNAME, MAIL,PASSWORD, SPECIALISATIONS, QUALIFICATIONS,INVESTMENT,CLINIC,Clinic2) values (?,?,?,?,?,?,?,?,?)";
 
                 PreparedStatement st = conn.prepareStatement(sql);
@@ -95,7 +96,7 @@ public class DataUpdate implements DataUpdateInterface {
                 st.setString(8, clinic);
                 st.setString(9, clinic2);
                 st.execute();
-                conn.close();
+                
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -106,12 +107,12 @@ public class DataUpdate implements DataUpdateInterface {
     public void DeletePatient(String mail)
     {
         try {
-            conn = new DBConnection().getConnection();
+            
             String sql = "DELETE from Patients where mail=?";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, mail);
             st.execute();
-            conn.close();
+            
             System.out.println("Patient deleted");
 
         } catch (SQLException e) {
@@ -123,12 +124,12 @@ public class DataUpdate implements DataUpdateInterface {
     public void DeleteDoctor(String mail)
     {
         try {
-            conn = new DBConnection().getConnection();
+            
             String sql = "DELETE from Doctors where mail=?";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, mail);
             st.execute();
-            conn.close();
+            
             System.out.println("Doctor deleted");
 
         } catch (SQLException e) {
@@ -140,7 +141,7 @@ public class DataUpdate implements DataUpdateInterface {
     public void updatePatient(String surName, String firstName, String age, String adress,
             String gender, String mail) {
         try {
-            conn = new DBConnection().getConnection();
+            
             String sql = "UPDATE Patients SET surname=?, firstname=?, age=?, gender=?, adresse=? WHERE mail =?";
             PreparedStatement st = conn.prepareStatement(sql);
 
@@ -151,7 +152,7 @@ public class DataUpdate implements DataUpdateInterface {
             st.setString(5, adress);
             st.setString(6, mail);
             st.execute();
-            conn.close();
+         
 
         } catch (SQLException e) {
             e.printStackTrace();
