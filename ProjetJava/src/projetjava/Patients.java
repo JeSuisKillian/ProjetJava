@@ -70,6 +70,10 @@ public class Patients {
     public String getName() {
         return m_surName;
     }
+    public String getFullName(){
+        String fName=m_surName + " " + m_firstName;
+        return fName;
+    }
      public String getAge() {
         return m_age;
     }
