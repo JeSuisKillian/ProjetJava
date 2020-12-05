@@ -45,14 +45,5 @@ public class DBConnection {
         return conn;
     }
     
-    public void closeConnection()
-    {
-       try{
-           conn.close();
-       }
-       catch(SQLException e)
-       {
-           e.printStackTrace();
-       }
-    }
+ 
 }

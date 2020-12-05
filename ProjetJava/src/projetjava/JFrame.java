@@ -41,7 +41,7 @@ public class JFrame extends javax.swing.JFrame {
         MyI = new InformationSearch(conn);
         MyI.setClinic();
         MyU = new DataUpdate(MyI, conn);
-        
+
         initComponents();
         setComponents();
 
@@ -2858,8 +2858,9 @@ public class JFrame extends javax.swing.JFrame {
     private void RecherchePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecherchePatientActionPerformed
 
         jTextPane1.setEditable(false);
-        String[] temp = String.valueOf(jComboBox3.getSelectedItem()).split(" ");
+        String[] temp = String.valueOf(jComboBox3.getSelectedItem()).split(" : ");
         String mail = temp[1];
+        System.out.println(mail);
         MyI.setPatient(mail);
         jLabel46.setText(MyI.getP().getFullName() + "'s record");
         jTextPane1.setText("SURNAME :" + MyI.getP().getName() + "\n"
@@ -2939,6 +2940,9 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
 
+        jLabel57.setText(null);
+        jLabel56.setText(null);
+        jLabel58.setText(null);
         if (jTextField15.getText().equals("") || jTextField16.getText().equals("") || jTextField17.getText().equals("") || jTextField18.getText().equals("") || jTextField19.getText().equals("") || jTextField20.getText().equals("") || (IsAnInteger(jTextField17.getText()) == false)) {
             if ((IsAnInteger(jTextField17.getText()) == false)) {
                 jLabel57.setForeground(new Color(255, 0, 0));
@@ -2947,11 +2951,14 @@ public class JFrame extends javax.swing.JFrame {
             if (jTextField15.getText().equals("") || jTextField16.getText().equals("") || jTextField17.getText().equals("") || jTextField18.getText().equals("") || jTextField19.getText().equals("") || jTextField20.getText().equals("")) {
                 jLabel56.setForeground(new Color(255, 0, 0));
                 jLabel56.setText("One or more * boxes not completed ");
-            } else {
-                MyU.updatePatient(jTextField15.getText(), jTextField16.getText(), jTextField17.getText(),
-                        jTextField18.getText(), jTextField19.getText(), jTextField20.getText());
-
             }
+        } else {
+            jLabel57.setText(null);
+            jLabel56.setText(null);
+
+            MyU.updatePatient(jTextField15.getText(), jTextField16.getText(), jTextField17.getText(),
+                    jTextField18.getText(), jTextField19.getText(), jTextField20.getText());
+
         }
 
         // TODO add your handling code here:
