@@ -2840,7 +2840,7 @@ public class JFrame extends javax.swing.JFrame {
         jComboBox3.removeAllItems();
 
         for (int i = 0; i < MyI.returnSurnameP().size(); ++i) {
-            jComboBox3.addItem(MyI.returnSurnameP().get(i) + " " + MyI.getInfoP().get(i));
+            jComboBox3.addItem(MyI.returnSurnameP().get(i) + " : " + MyI.getInfoP().get(i));
         }
 
         jPanel6.setVisible(false);
@@ -3377,7 +3377,7 @@ public class JFrame extends javax.swing.JFrame {
             for (int i = 0; i < max + 1; i++) {
                 jProgressBar1.setValue(i);
                 try {
-                    sleep(180);
+                    sleep(140);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
