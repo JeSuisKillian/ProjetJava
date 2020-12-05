@@ -115,7 +115,7 @@ public class InformationSearch implements InformationSearchInterface {
 
         try {
             
-            PreparedStatement st = conn.prepareStatement("SELECT*FROM Appointment JOIN Patients ON Appointment.Patient = Patients.Surname WHERE Patients.Surname = ?");
+            PreparedStatement st = conn.prepareStatement("SELECT*FROM Appointment JOIN Patients ON Appointment.Patient = Patients.Surname WHERE Patients.Surname = ? ORDER BY DATE");
             st.setString(1, MyP.getName());
             ResultSet r1 = st.executeQuery();
             while (r1.next()) {
