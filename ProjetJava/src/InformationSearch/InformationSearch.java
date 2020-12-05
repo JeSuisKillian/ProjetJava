@@ -18,7 +18,9 @@ import DAO.Patients;
  *
  * @author Pierr
  */
-public class InformationSearch {
+@SuppressWarnings("CallToPrintStackTrace")
+
+public class InformationSearch implements InformationSearchInterface {
 
     private Connection conn;
     private Patients MyP;
@@ -29,6 +31,8 @@ public class InformationSearch {
 
     }
 
+    
+    @Override
     public boolean testIDPatient(String mail) {
         boolean usernameExists = false;
 
@@ -52,6 +56,7 @@ public class InformationSearch {
         return usernameExists;
     }
 
+    @Override
     public void setPatient(String mail) {
 
         MyP = new Patients();
@@ -76,6 +81,7 @@ public class InformationSearch {
         }
     }
 
+    @Override
     public boolean testPassMail(String mail, String pass) {
         boolean IndentificationOK = false;
 
@@ -105,6 +111,7 @@ public class InformationSearch {
         return IndentificationOK;
     }
 
+    @Override
     public void chargeAllAppointmentP() {
 
         try {
@@ -130,6 +137,7 @@ public class InformationSearch {
         }
     }
 
+    @Override
     public boolean testIDDoctor(String mail) {
         boolean usernameExists = false;
 
@@ -152,6 +160,7 @@ public class InformationSearch {
         return usernameExists;
     }
 
+    @Override
     public void setDoctors(String mail) {
         MyD = new Doctors();
         try {
@@ -177,6 +186,7 @@ public class InformationSearch {
 
     }
 
+    @Override
     public boolean testDocPassMail(String mail, String pass) {
         boolean IndentificationOK = false;
 
@@ -210,6 +220,7 @@ public class InformationSearch {
         return IndentificationOK;
     }
 
+    @Override
     public void chargeAllDocAppointment() {
 
         try {
@@ -235,6 +246,7 @@ public class InformationSearch {
         }
     }
 
+    @Override
     public void setClinic() {
 
         MyC = new Clinics();
@@ -254,6 +266,7 @@ public class InformationSearch {
         }
     }
 
+    @Override
     public void chargeAllAppointmentC(String name) {
 
         try {
@@ -281,6 +294,7 @@ public class InformationSearch {
         }
     }
 
+    @Override
     public ArrayList getInfoP() {
         ArrayList<String> info = new ArrayList<>();
 
@@ -301,6 +315,7 @@ public class InformationSearch {
         return info;
     }
 
+    @Override
     public ArrayList NameDoctor() {
         ArrayList<String> nameDoc = new ArrayList<>();
 
@@ -328,6 +343,7 @@ public class InformationSearch {
         return MyC;
     }
 
+    @Override
     public boolean checkDocH(String doc, String clinic) {
         boolean DocHMatches = true;
 
@@ -365,7 +381,8 @@ public class InformationSearch {
         return checkHour;
     }
 
-    public String returnMail(String name) {
+    @Override
+    public String returnMailDoc(String name) {
         String mail = " ";
 
         try {
@@ -384,7 +401,8 @@ public class InformationSearch {
         return mail;
     }
 
-    public String returnNameFull(String mail) {
+    @Override
+    public String returnNameFullP(String mail) {
         String surname = " ", firstName = " ", name;
 
         try {
@@ -408,6 +426,7 @@ public class InformationSearch {
         return name;
     }
 
+    @Override
     public ArrayList returnSurnameP() {
 
         ArrayList<String> temp = new ArrayList<>();
@@ -430,6 +449,7 @@ public class InformationSearch {
         return temp;
     }
 
+    @Override
     public String returnPatientMail(String name) {
         String mail = " ";
 
@@ -449,6 +469,7 @@ public class InformationSearch {
         return mail;
     }
 
+    @Override
     public ArrayList AdvancedResearch(String reason) {
         ArrayList<String> temp = new ArrayList<>();
         try {

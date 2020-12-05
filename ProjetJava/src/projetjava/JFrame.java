@@ -2543,7 +2543,7 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
         // TODO add your handling code here:
-        MyI.setDoctors(MyI.returnMail(String.valueOf(jComboBox2.getSelectedItem())));
+        MyI.setDoctors(MyI.returnMailDoc(String.valueOf(jComboBox2.getSelectedItem())));
         MyI.chargeAllDocAppointment();
         if (MyI.checkHour(new Appointment(jDateChooser1.getDate(), jButton30.getText(),
                 jComboBox1.getSelectedItem().toString(), MyI.getP().getName(),
@@ -2568,7 +2568,7 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         // TODO add your handling code here:
 
-        MyI.setDoctors(MyI.returnMail(String.valueOf(jComboBox2.getSelectedItem())));
+        MyI.setDoctors(MyI.returnMailDoc(String.valueOf(jComboBox2.getSelectedItem())));
         MyI.chargeAllDocAppointment();
         if (MyI.checkHour(new Appointment(jDateChooser1.getDate(), jButton30.getText(),
                 jComboBox1.getSelectedItem().toString(), MyI.getP().getName(),
@@ -2936,7 +2936,7 @@ public class JFrame extends javax.swing.JFrame {
         for (int i = 0; i < MyI.getInfoP().size(); ++i) {
             //jComboBox6.addItem(MyI.getInfoP().get(i));
             email.add((String) MyI.getInfoP().get(i));
-            jComboBox6.addItem(MyI.returnNameFull(String.valueOf(email.get(i))));
+            jComboBox6.addItem(MyI.returnNameFullP(String.valueOf(email.get(i))));
         }
 
     }//GEN-LAST:event_jButton48ActionPerformed

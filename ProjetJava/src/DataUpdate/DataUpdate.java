@@ -13,16 +13,19 @@ import projetjava.DBConnection;
  *
  * @author Pierr
  */
-public class DataUpdate {
+@SuppressWarnings("CallToPrintStackTrace")
+
+public class DataUpdate implements DataUpdateInterface {
 
     private Connection conn;
-    private InformationSearch MyI;
+    private final InformationSearch MyI;
 
     public DataUpdate(InformationSearch I) {
         MyI = I;
 
     }
 
+    @Override
     public void addPatients(String surName, String firstName, String age, String gender,
             String mail, String password) {
         if (MyI.testIDPatient(mail) == false) {
@@ -47,6 +50,7 @@ public class DataUpdate {
         }
     }
 
+    @Override
     public void chooseAppointment(String doc, String time, String Clinic, String reason, java.util.Date date) {
 
         try {
@@ -71,6 +75,7 @@ public class DataUpdate {
         }
     }
 
+    @Override
     public void addDoctors(String surName, String firstName, String mail,
             String pass, String specialisation, String qualification, String investment, String clinic, String clinic2) {
         if (MyI.testIDDoctor(mail) == false) {
@@ -97,6 +102,7 @@ public class DataUpdate {
         }
     }
     
+    @Override
     public void DeletePatient(String mail)
     {
         try {
@@ -113,6 +119,7 @@ public class DataUpdate {
         }
     }
     
+    @Override
     public void DeleteDoctor(String mail)
     {
         try {
@@ -129,6 +136,7 @@ public class DataUpdate {
         }
     }
 
+    @Override
     public void updatePatient(String surName, String firstName, String age, String adress,
             String gender, String mail) {
         try {
