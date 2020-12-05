@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetjava;
+package DataUpdate;
 
+import InformationSearch.InformationSearch;
 import java.sql.*;
+import projetjava.DBConnection;
 
 /**
  *

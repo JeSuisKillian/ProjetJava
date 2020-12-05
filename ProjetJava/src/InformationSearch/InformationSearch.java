@@ -3,11 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetjava;
+package InformationSearch;
 
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import DAO.Appointment;
+import DAO.Clinics;
+import projetjava.DBConnection;
+import DAO.Doctors;
+import DAO.Patients;
 
 /**
  *
@@ -133,9 +138,9 @@ public class InformationSearch {
             PreparedStatement st = conn.prepareStatement("select mail from Doctors");
             ResultSet r1 = st.executeQuery();
             String usernameCounter;
-            while(r1.next()) {
+            while (r1.next()) {
                 usernameCounter = r1.getString("mail");
-                if(usernameCounter.equals(mail)) {
+                if (usernameCounter.equals(mail)) {
                     usernameExists = true;
                 }
             }
@@ -334,37 +339,33 @@ public class InformationSearch {
             st.setString(3, clinic);
             ResultSet r1 = st.executeQuery();
 
-            if (r1.next()==false) {
+            if (r1.next() == false) {
                 DocHMatches = false;
-               JOptionPane.showMessageDialog(null, "This doctor is not availbale in this clinic, please pick an other one");            
+                JOptionPane.showMessageDialog(null, "This doctor is not availbale in this clinic, please pick an other one");
             }
-           
-            
+
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-       
+
         return DocHMatches;
     }
-    
-    public boolean checkHour(Appointment App)
-    {
+
+    public boolean checkHour(Appointment App) {
         boolean checkHour = false;
-        
-        for(int i=0; i<MyD.getDocApp().size();++i)
-        {
-            if(MyD.getDocApp(i).getTime().equals(App.getTime())&&
-                    MyD.getDocApp(i).getDate().equals(App.getDate()))
-            {
+
+        for (int i = 0; i < MyD.getDocApp().size(); ++i) {
+            if (MyD.getDocApp(i).getTime().equals(App.getTime())
+                    && MyD.getDocApp(i).getDate().equals(App.getDate())) {
                 System.out.println("AH");
                 checkHour = true;
             }
         }
         return checkHour;
     }
-    public String returnMail(String name)
-    {
+
+    public String returnMail(String name) {
         String mail = " ";
 
         try {
@@ -372,23 +373,20 @@ public class InformationSearch {
             PreparedStatement st = conn.prepareStatement("select mail from Doctors where surname=?");
             st.setString(1, name);
             ResultSet r1 = st.executeQuery();
-            
-            while(r1.next())
-            {
+
+            while (r1.next()) {
                 mail = r1.getString(3);
             }
-        }
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println(mail);
         return mail;
     }
-    public String returnSurname(String mail)
-    {
-        String surname = " ",firstName= " ",name;
-        
+
+    public String returnNameFull(String mail) {
+        String surname = " ", firstName = " ", name;
+
         try {
             conn = new DBConnection().getConnection();
             PreparedStatement st = conn.prepareStatement("select surname from Patients  where mail=?");
@@ -397,23 +395,42 @@ public class InformationSearch {
             st1.setString(1, mail);
             ResultSet r1 = st.executeQuery();
             ResultSet r2 = st1.executeQuery();
-            
-            while(r1.next() && r2.next())
-            {
+
+            while (r1.next() && r2.next()) {
                 surname = r1.getString(1);
                 firstName = r2.getString(1);
             }
-        }
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        name=surname + " " + firstName;
+        name = surname + " " + firstName;
         System.out.println(name);
         return name;
     }
-    public String returnPatientMail(String name)
-    {
+
+    public ArrayList returnSurnameP() {
+
+        ArrayList<String> temp = new ArrayList<>();
+
+        try {
+            conn = new DBConnection().getConnection();
+            PreparedStatement st = conn.prepareStatement("select surname from Patients");
+            ResultSet r1 = st.executeQuery();
+           
+
+            while (r1.next()) {
+                String surname = r1.getString(1);
+
+                temp.add(surname);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+
+    public String returnPatientMail(String name) {
         String mail = " ";
 
         try {
@@ -421,38 +438,32 @@ public class InformationSearch {
             PreparedStatement st = conn.prepareStatement("select mail from Patients where surname=?");
             st.setString(1, name);
             ResultSet r1 = st.executeQuery();
-            
-            while(r1.next())
-            {
+
+            while (r1.next()) {
                 mail = r1.getString(1);
             }
-        }
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println(mail);
         return mail;
     }
-    public ArrayList AdvancedResearch(String reason)
-    {
+
+    public ArrayList AdvancedResearch(String reason) {
         ArrayList<String> temp = new ArrayList<>();
-         try {
+        try {
             conn = new DBConnection().getConnection();
-            PreparedStatement st = conn.prepareStatement("SELECT surname FROM Patients JOIN Appointment ON Patients.Surname = Appointment.Patient WHERE Appointment.Reason = ?"); 
+            PreparedStatement st = conn.prepareStatement("SELECT surname FROM Patients JOIN Appointment ON Patients.Surname = Appointment.Patient WHERE Appointment.Reason = ?");
             st.setString(1, reason);
             ResultSet r1 = st.executeQuery();
-            
-            while(r1.next())
-            {
-               temp.add(r1.getString(1));
-            }     
-        }
-        catch(SQLException e)
-        {
+
+            while (r1.next()) {
+                temp.add(r1.getString(1));
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-         return temp;
+        return temp;
     }
 
     public Doctors getD() {

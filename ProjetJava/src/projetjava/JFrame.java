@@ -5,6 +5,9 @@
  */
 package projetjava;
 
+import DAO.Appointment;
+import DataUpdate.DataUpdate;
+import InformationSearch.InformationSearch;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -1179,10 +1182,11 @@ public class JFrame extends javax.swing.JFrame {
                             .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel33))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel29)
-                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel29)
+                                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1886,7 +1890,7 @@ public class JFrame extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
                 .addComponent(jButton23)
                 .addGap(126, 126, 126))
             .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1912,9 +1916,9 @@ public class JFrame extends javax.swing.JFrame {
                     .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(67, 67, 67)
+                .addGap(46, 46, 46)
                 .addComponent(jButton26)
-                .addGap(18, 18, 18))
+                .addGap(32, 32, 32))
         );
 
         jPanel14.setBackground(new java.awt.Color(103, 128, 159));
@@ -2324,10 +2328,9 @@ public class JFrame extends javax.swing.JFrame {
         jLabel49.setText(null);
         jLabel50.setText(null);
         jLabel34.setText(null);
-        
 
         if (jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jTextField5.getText().equals("") || jTextField6.getText().equals("") || (IsAnInteger(jTextField4.getText()) == false)) {
-            
+
             if ((IsAnInteger(jTextField4.getText()) == false)) {
                 jLabel50.setForeground(new Color(255, 0, 0));
                 jLabel50.setText("Please enter a valid number");
@@ -2472,11 +2475,11 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField8ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        
+
         jLabel54.setText(null);
         jLabel59.setText(null);
         jLabel60.setText(null);
-        
+
         if (jTextField8.getText().equals("") || jTextField9.getText().equals("") || jTextField10.getText().equals("") || jTextField11.getText().equals("") || jTextField13.getText().equals("") || jTextArea1.getText().equals("") || jPasswordField4.getText().equals("")) {
             jLabel54.setForeground(new Color(255, 0, 0));
             jLabel54.setText("One or more * boxes not completed ");
@@ -2486,17 +2489,17 @@ public class JFrame extends javax.swing.JFrame {
             if (MyI.testIDDoctor(jTextField13.getText()) == true) {
                 jLabel59.setForeground(new Color(255, 0, 0));
                 jLabel59.setText("Email already used, please use another one");
-            } else {    
+            } else {
                 jLabel59.setText(null);
-                    if (String.valueOf(jComboBox4.getSelectedItem()).equals(String.valueOf(jComboBox5.getSelectedItem()))) {
-                        jLabel60.setText("The two Clinics must be different");
-                    } else {
-                        jLabel60.setText(null);
-                        MyU.addDoctors(jTextField9.getText(), jTextField8.getText(), jTextField13.getText(),
-                                jPasswordField4.getText(), jTextField10.getText(), jTextField11.getText(),
-                                jTextArea1.getText(), jComboBox4.getSelectedItem().toString(), jComboBox5.getSelectedItem().toString());
-                        JOptionPane.showMessageDialog(null, "Doctor added sucessfully");
-                    }                
+                if (String.valueOf(jComboBox4.getSelectedItem()).equals(String.valueOf(jComboBox5.getSelectedItem()))) {
+                    jLabel60.setText("The two Clinics must be different");
+                } else {
+                    jLabel60.setText(null);
+                    MyU.addDoctors(jTextField9.getText(), jTextField8.getText(), jTextField13.getText(),
+                            jPasswordField4.getText(), jTextField10.getText(), jTextField11.getText(),
+                            jTextArea1.getText(), jComboBox4.getSelectedItem().toString(), jComboBox5.getSelectedItem().toString());
+                    JOptionPane.showMessageDialog(null, "Doctor added sucessfully");
+                }
             }
             /*
              if (MyI.testIDPatient(jTextField20.getText()) == true) {
@@ -2774,8 +2777,8 @@ public class JFrame extends javax.swing.JFrame {
         //A FAIRE 
         jComboBox3.removeAllItems();
 
-        for (int i = 0; i < MyI.getInfoP().size(); ++i) {
-            jComboBox3.addItem(MyI.getInfoP().get(i));
+        for (int i = 0; i < MyI.returnSurnameP().size(); ++i) {
+            jComboBox3.addItem(MyI.returnSurnameP().get(i)+" "+MyI.getInfoP().get(i));
         }
 
         jPanel6.setVisible(false);
@@ -2793,7 +2796,9 @@ public class JFrame extends javax.swing.JFrame {
     private void RecherchePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecherchePatientActionPerformed
 
         jTextPane1.setEditable(false);
-        MyI.setPatient(String.valueOf(jComboBox3.getSelectedItem()));
+        String[] temp = String.valueOf(jComboBox3.getSelectedItem()).split(" ");
+        String mail = temp[1];
+        MyI.setPatient(mail);
         jLabel46.setText(MyI.getP().getFullName() + "'s record");
         jTextPane1.setText("SURNAME :" + MyI.getP().getName() + "\n"
                 + "FIRSTNAME :" + MyI.getP().getFirstName() + "\n"
@@ -2872,9 +2877,6 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
 
-        jLabel57.setText(null);
-        jLabel56.setText(null);
-        jLabel58.setText(null);
         if (jTextField15.getText().equals("") || jTextField16.getText().equals("") || jTextField17.getText().equals("") || jTextField18.getText().equals("") || jTextField19.getText().equals("") || jTextField20.getText().equals("") || (IsAnInteger(jTextField17.getText()) == false)) {
             if ((IsAnInteger(jTextField17.getText()) == false)) {
                 jLabel57.setForeground(new Color(255, 0, 0));
@@ -2883,13 +2885,6 @@ public class JFrame extends javax.swing.JFrame {
             if (jTextField15.getText().equals("") || jTextField16.getText().equals("") || jTextField17.getText().equals("") || jTextField18.getText().equals("") || jTextField19.getText().equals("") || jTextField20.getText().equals("")) {
                 jLabel56.setForeground(new Color(255, 0, 0));
                 jLabel56.setText("One or more * boxes not completed ");
-            }
-        } else {
-            jLabel57.setText(null);
-            jLabel56.setText(null);
-            if (MyI.testIDPatient(jTextField20.getText()) == true) {
-                jLabel58.setForeground(new Color(255, 0, 0));
-                jLabel58.setText("Email already used, please use another one");
             } else {
                 MyU.updatePatient(jTextField15.getText(), jTextField16.getText(), jTextField17.getText(),
                         jTextField18.getText(), jTextField19.getText(), jTextField20.getText());
@@ -2941,9 +2936,8 @@ public class JFrame extends javax.swing.JFrame {
         for (int i = 0; i < MyI.getInfoP().size(); ++i) {
             //jComboBox6.addItem(MyI.getInfoP().get(i));
             email.add((String) MyI.getInfoP().get(i));
-            jComboBox6.addItem(MyI.returnSurname(String.valueOf(email.get(i))));
+            jComboBox6.addItem(MyI.returnNameFull(String.valueOf(email.get(i))));
         }
-
 
     }//GEN-LAST:event_jButton48ActionPerformed
 
