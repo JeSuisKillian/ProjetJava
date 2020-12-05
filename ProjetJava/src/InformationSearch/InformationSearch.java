@@ -474,7 +474,7 @@ public class InformationSearch implements InformationSearchInterface {
         ArrayList<String> temp = new ArrayList<>();
         try {
             conn = new DBConnection().getConnection();
-            PreparedStatement st = conn.prepareStatement("SELECT surname FROM Patients JOIN Appointment ON Patients.Surname = Appointment.Patient WHERE Appointment.Reason = ?");
+            PreparedStatement st = conn.prepareStatement("SELECT DISTINCT surname FROM Patients JOIN Appointment ON Patients.Surname = Appointment.Patient WHERE Appointment.Reason = ?");
             st.setString(1, reason);
             ResultSet r1 = st.executeQuery();
 
