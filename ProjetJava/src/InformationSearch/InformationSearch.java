@@ -224,7 +224,7 @@ public class InformationSearch implements InformationSearchInterface {
 
         try {
            
-            PreparedStatement st = conn.prepareStatement("SELECT*FROM Appointment WHERE Doctor=?");
+            PreparedStatement st = conn.prepareStatement("SELECT*FROM Appointment WHERE Doctor=? ORDER BY DATE");
             st.setString(1, MyD.getDocName());
             ResultSet r1 = st.executeQuery();
             while (r1.next()) {
