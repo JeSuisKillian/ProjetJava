@@ -12,12 +12,8 @@ import java.util.Date;
  *
  * @author Pierr
  */
-public class Doctors {
+public class Doctors extends Users {
 
-    private String m_surName;
-    private String m_firstName;
-    private String m_mail;
-    private String m_password;
     private String m_specialisation;
     private String m_qualification;
     private String m_investement;

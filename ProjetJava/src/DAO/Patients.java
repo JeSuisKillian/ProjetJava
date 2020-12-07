@@ -17,14 +17,10 @@ import java.util.*;
  *
  * @author Pierr
  */
-public class Patients {
+public class Patients extends Users{
 
-    private String m_surName;
-    private String m_firstName;
     private String m_age;
     private String m_gender;
-    private String m_mail;
-    private String m_password;
     private String m_adress;
     private ArrayList<Appointment> m_PaApp = new ArrayList<>();
 
