@@ -485,6 +485,13 @@ public class InformationSearch implements InformationSearchInterface {
         }
         return temp;
     }
+    
+    public void clearApp()
+    {
+        
+            MyP.getApp().clear();
+        
+    }
 
     public Doctors getD() {
         return MyD;

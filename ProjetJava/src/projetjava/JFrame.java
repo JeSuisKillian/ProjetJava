@@ -34,6 +34,8 @@ public class JFrame extends javax.swing.JFrame {
     private progress p;
     private boolean DelPatient = true;
     private Connection conn;
+    private DefaultTableModel MyModel2;
+    private DefaultTableModel MyModel;
 
     public JFrame() {
 
@@ -2757,7 +2759,10 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
+       
+       MyI.clearApp();
+        
+// TODO add your handling code here:
         jPanel10.setVisible(false);
         jPanel7.setVisible(true);
     }//GEN-LAST:event_jButton19ActionPerformed
@@ -3123,7 +3128,7 @@ public class JFrame extends javax.swing.JFrame {
                 Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        DefaultTableModel MyModel2 = new DefaultTableModel(data2, columns);
+        MyModel2 = new DefaultTableModel(data2, columns);
         int k=0;
         while(MyModel2.getValueAt(k,0)==null)
         {
@@ -3151,7 +3156,7 @@ public class JFrame extends javax.swing.JFrame {
             }
         }
 
-       DefaultTableModel MyModel = new DefaultTableModel(data, columns);
+       MyModel = new DefaultTableModel(data, columns);
        
         
         jTable1.setModel(MyModel);
