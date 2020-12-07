@@ -2733,45 +2733,8 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         // TODO add your handling code here:
-
         jPanel7.setVisible(false);
-        MyI.chargeAllAppointmentP();
-        Date date = new Date();
-        String data[][] = new String[MyI.getP().getApp().size()][6];
-        String data2[][] = new String[MyI.getP().getApp().size()][6];
-        String columns[] = {"Doctor", "Patient", "Reason", "Day", "Hour", "Clinic"};
-        DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-        for (int i = 0; i < MyI.getP().getApp().size(); ++i) {
-
-            try {
-                if (dateFormat.parse(dateFormat.format(MyI.getP().getApp(i).getDate())).before(date)) {
-                    data[i][0] = MyI.getP().getApp(i).getDoctor();
-                    data[i][1] = MyI.getP().getApp(i).getPatient();
-                    data[i][2] = MyI.getP().getApp(i).getReason();
-                    data[i][3] = dateFormat.format(MyI.getP().getApp(i).getDate());
-                    data[i][4] = MyI.getP().getApp(i).getTime();
-                    data[i][5] = MyI.getP().getApp(i).getClinic();
-                }
-            } catch (ParseException ex) {
-                Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                if (dateFormat.parse(dateFormat.format(MyI.getP().getApp(i).getDate())).after(date)) {
-                    data2[i][0] = MyI.getP().getApp(i).getDoctor();
-                    data2[i][1] = MyI.getP().getApp(i).getPatient();
-                    data2[i][2] = MyI.getP().getApp(i).getReason();
-                    data2[i][3] = dateFormat.format(MyI.getP().getApp(i).getDate());
-                    data2[i][4] = MyI.getP().getApp(i).getTime();
-                    data2[i][5] = MyI.getP().getApp(i).getClinic();
-                }
-            } catch (ParseException ex) {
-                Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        jTable1.setModel(new DefaultTableModel(data, columns));
-        jTable4.setModel(new DefaultTableModel(data2, columns));
-        jPanel10.setVisible(true);
+        oldAndFutureAppointments();     
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -3138,6 +3101,63 @@ public class JFrame extends javax.swing.JFrame {
         jPanel24.setVisible(false);
         jPanel26.setVisible(false);
     }
+    
+    public void oldAndFutureAppointments()
+    {
+        MyI.chargeAllAppointmentP();
+        Date date = new Date();
+        String data[][] = new String[MyI.getP().getApp().size()][6];
+        String data2[][] = new String[MyI.getP().getApp().size()][6];
+        String columns[] = {"Doctor", "Patient", "Reason", "Day", "Hour", "Clinic"};
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+         for (int i = 0; i < MyI.getP().getApp().size(); ++i) {
+            try {
+                if (dateFormat.parse(dateFormat.format(MyI.getP().getApp(i).getDate())).after(date)) {
+                    data2[i][0] = MyI.getP().getApp(i).getDoctor();
+                    data2[i][1] = MyI.getP().getApp(i).getPatient();
+                    data2[i][2] = MyI.getP().getApp(i).getReason();
+                    data2[i][3] = dateFormat.format(MyI.getP().getApp(i).getDate());
+                    data2[i][4] = MyI.getP().getApp(i).getTime();
+                    data2[i][5] = MyI.getP().getApp(i).getClinic();
+                }  } catch (ParseException ex) {
+                Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        DefaultTableModel MyModel2 = new DefaultTableModel(data2, columns);
+        int k=0;
+        while(MyModel2.getValueAt(k,0)==null)
+        {
+            MyModel2.removeRow(k);
+            k++;
+        }
+        jTable4.setModel(MyModel2);
+        
+        for (int i = 0; i < MyI.getP().getApp().size(); ++i) {
+
+            try {
+                if (dateFormat.parse(dateFormat.format(MyI.getP().getApp(i).getDate())).before(date)) {
+                    data[i][0] = MyI.getP().getApp(i).getDoctor();
+                    data[i][1] = MyI.getP().getApp(i).getPatient();
+                    data[i][2] = MyI.getP().getApp(i).getReason();
+                    data[i][3] = dateFormat.format(MyI.getP().getApp(i).getDate());
+                    data[i][4] = MyI.getP().getApp(i).getTime();
+                    data[i][5] = MyI.getP().getApp(i).getClinic();
+                }
+            
+               
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+       DefaultTableModel MyModel = new DefaultTableModel(data, columns);
+       
+        
+        jTable1.setModel(MyModel);
+       
+        jPanel10.setVisible(true);
+    }
 
     /**
      * @param args the command line arguments
@@ -3384,7 +3404,7 @@ public class JFrame extends javax.swing.JFrame {
             for (int i = 0; i < max + 1; i++) {
                 jProgressBar1.setValue(i);
                 try {
-                    sleep(140);
+                    sleep(50);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
