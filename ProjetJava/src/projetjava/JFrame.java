@@ -3053,7 +3053,13 @@ public class JFrame extends javax.swing.JFrame {
             mailo = MyI.returnPatientMail(c);
             MyU.DeletePatient(mailo);
         } else {
-            MyU.DeleteDoctor((String) jComboBox6.getSelectedItem());
+            String nom, d, maila;
+            String[] m;
+            nom = (String) jComboBox6.getSelectedItem();
+            m = nom.split(" ");
+            d = m[0];
+            maila = MyI.returnDoctorMail(d);
+            MyU.DeleteDoctor(maila);
         }
 
     }//GEN-LAST:event_jButton49ActionPerformed
