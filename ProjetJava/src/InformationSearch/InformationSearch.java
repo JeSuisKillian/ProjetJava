@@ -19,18 +19,32 @@ import DAO.Patients;
  */
 @SuppressWarnings("CallToPrintStackTrace")
 
+
+/**
+ * Classe permettant de consulter la base de données pour des recherches d'informations
+ * @implements DataUpdateInterface
+ */
 public class InformationSearch implements InformationSearchInterface {
 
     private Connection conn;
     private Patients MyP;
     private Doctors MyD;
     private Clinics MyC;
-
+    
+/**
+ * Constructeur
+ * @param c la conncection 
+ * @return InformationSearch : l'objet créé
+ */
     public InformationSearch(Connection c) {
             conn = c;
     }
 
-    
+ /**
+ * Méthode permettant de vérifier que le mail rentré par l'utilisateur existe dans la base de données
+ * @param mail : rentré par l'utilisateur
+ * @return true : si le mail existe bien dans la BDD
+ */
     @Override
     public boolean testIDPatient(String mail) {
         boolean usernameExists = false;
@@ -54,7 +68,11 @@ public class InformationSearch implements InformationSearchInterface {
 
         return usernameExists;
     }
-
+ /**
+ * Méthode permettant d'affecter l'attribut Patient de la classe InformationSearch
+ * @param mail : du patient séléctionné
+ * 
+ */
     @Override
     public void setPatient(String mail) {
 
@@ -79,7 +97,11 @@ public class InformationSearch implements InformationSearchInterface {
             e.printStackTrace();
         }
     }
-
+ /**
+ * Méthode permettant de vérifier que le mot de passe entré correspond au mail entré par le patient
+ * @param mail, pass : mail et mot de passe pour vérifier qu'ils se correspondent
+ * @return true : si le mot de passe est le bon
+ */
     @Override
     public boolean testPassMail(String mail, String pass) {
         boolean IndentificationOK = false;
@@ -110,6 +132,11 @@ public class InformationSearch implements InformationSearchInterface {
         return IndentificationOK;
     }
 
+ /**
+ * Méthode permettant de charger dans le Patient tous ses rendez-vous médicaux
+ * 
+ * 
+ */
     @Override
     public void chargeAllAppointmentP() {
 
@@ -136,6 +163,11 @@ public class InformationSearch implements InformationSearchInterface {
         }
     }
 
+ /**
+ * Méthode permettant de vérifier que le mail rentré par l'utilisateur existe dans la base de données
+ * @param mail : rentré par l'utilisateur
+ * @return true : si le mail existe bien dans la BDD
+ */
     @Override
     public boolean testIDDoctor(String mail) {
         boolean usernameExists = false;
@@ -159,6 +191,11 @@ public class InformationSearch implements InformationSearchInterface {
         return usernameExists;
     }
 
+ /**
+ * Méthode permettant d'affecter l'attribut Doctor de la classe InformationSearch
+ * @param mail : du docteur séléctionné
+ * 
+ */
     @Override
     public void setDoctors(String mail) {
         MyD = new Doctors();
@@ -185,6 +222,11 @@ public class InformationSearch implements InformationSearchInterface {
 
     }
 
+ /**
+ * Méthode permettant de vérifier que le mot de passe entré correspond au mail entré par le docteur
+ * @param mail, pass : mail et mot de passe pour vérifier qu'ils se correspondent
+ * @return true : si le mot de passe est le bon
+ */
     @Override
     public boolean testDocPassMail(String mail, String pass) {
         boolean IndentificationOK = false;
@@ -219,6 +261,11 @@ public class InformationSearch implements InformationSearchInterface {
         return IndentificationOK;
     }
 
+/**
+ * Méthode permettant de charger dans l Doctor tous ses rendez-vous médicaux
+ * 
+ * 
+ */
     @Override
     public void chargeAllDocAppointment() {
 
@@ -245,6 +292,11 @@ public class InformationSearch implements InformationSearchInterface {
         }
     }
 
+ /**
+ * Affecter l'attribut clinic de InformationSearch
+ * 
+ * 
+ */
     @Override
     public void setClinic() {
 
@@ -265,6 +317,11 @@ public class InformationSearch implements InformationSearchInterface {
         }
     }
 
+     /**
+ * Méthode permettant de charger dans la Clinique tous ses rendez-vous
+ * 
+ * 
+ */
     @Override
     public void chargeAllAppointmentC(String name) {
 
@@ -293,6 +350,11 @@ public class InformationSearch implements InformationSearchInterface {
         }
     }
 
+ /**
+ * Méthode permettant de récupérer toutes les informationdans du patient séléctionné
+ * @return info : un tableau de chaînes de caractères contenant chacune une donnée du Patient (exemple : son adresse, son âge etc.)
+ * 
+ */
     @Override
     public ArrayList getInfoP() {
         ArrayList<String> info = new ArrayList<>();
@@ -314,6 +376,11 @@ public class InformationSearch implements InformationSearchInterface {
         return info;
     }
 
+ /**
+ * Méthode permettant de récupérer tous les noms des docteurs pour les charger dans une comboBox
+ * 
+ * @return nameDoc : un tableau de chaînes de caractères contenant chacune un nom de docteur
+ */
     @Override
     public ArrayList NameDoctor() {
         ArrayList<String> nameDoc = new ArrayList<>();
@@ -342,6 +409,11 @@ public class InformationSearch implements InformationSearchInterface {
         return MyC;
     }
 
+ /**
+ * Méthode permettant de vérifier qu'un docteur travaille dans une clinique donnée
+ * @param doc, clinic : pour vérifier s'ils se correspondent
+ * @return true : si "doc" appartient bien à la clinique "clinic"
+ */
     @Override
     public boolean checkDocH(String doc, String clinic) {
         boolean DocHMatches = true;
@@ -367,6 +439,11 @@ public class InformationSearch implements InformationSearchInterface {
         return DocHMatches;
     }
 
+ /**
+ * Lorsque qu'un rdv est pris avec un certain docteur, cette méthode permet de vérifier n'a pas déjà un rendez-vous à la même heure
+ * @param App : le rendez-vous séléctionné par le patient
+ * @return true : si le docteur séléctionné est libre
+ */
     public boolean checkHour(Appointment App) {
         boolean checkHour = false;
 
@@ -380,6 +457,11 @@ public class InformationSearch implements InformationSearchInterface {
         return checkHour;
     }
 
+ /**
+ * Méthode permettant récupérer un mail d'un docteur via son prénom
+ * @param name : le nom du docteur
+ * @return mail : le mail du docteur
+ */
     @Override
     public String returnMailDoc(String name) {
         String mail = " ";
@@ -400,6 +482,11 @@ public class InformationSearch implements InformationSearchInterface {
         return mail;
     }
 
+ /**
+ * Méthode permettant de récupérer le nom complet un patient
+ * @param mail : identifiant du patient
+ * @return name : nom complet du patient
+ */
     @Override
     public String returnNameFullP(String mail) {
         String surname = " ", firstName = " ", name;
@@ -425,6 +512,11 @@ public class InformationSearch implements InformationSearchInterface {
         return name;
     }
 
+ /**
+ * Méthode permettant de récupérer le nom de tous les patients pour les charger dans une comboBox
+ * 
+ * @return temp : un tableau de chaînes de caractères contenant chacune un nom de patient
+ */
     @Override
     public ArrayList returnSurnameP() {
 
@@ -448,6 +540,11 @@ public class InformationSearch implements InformationSearchInterface {
         return temp;
     }
 
+ /**
+ * Méthode permettant récupérer un mail d'un patient via son prénom
+ * @param name : le nom du patient
+ * @return mail : le mail du patient
+ */
     @Override
     public String returnPatientMail(String name) {
         String mail = " ";
@@ -468,6 +565,11 @@ public class InformationSearch implements InformationSearchInterface {
         return mail;
     }
 
+ /**
+ * Méthode permettant de faire une recherche de patient un motif pour l'un de ses rendez-vous (exemple : quels patients ont consulté pour une entorse ?)
+ * @param reason : le motif en question
+ * @return temp : un tableau de chaîne de caractères contenant chacune le nom d'un patient qui a pris un rendez-vous pour ce motif
+ */ 
     @Override
     public ArrayList AdvancedResearch(String reason) {
         ArrayList<String> temp = new ArrayList<>();
@@ -485,18 +587,23 @@ public class InformationSearch implements InformationSearchInterface {
         }
         return temp;
     }
-    
-    public void clearApp()
-    {
-        
-            MyP.getApp().clear();
-        
-    }
 
+
+ /**
+ * Méthode permettant vider le tableau de rendez-vous du patient selectionné (pour éviter les doublons au moment de la sélection des rendez-vous)
+ * 
+ * 
+ */
     public void clear ()
     {
         MyP.getApp().clear();
     }
+    
+ /**
+ * Méthode permettant récupérer le docteur sélectionné 
+ * 
+ * @return MyD : le docteur en question
+ */
     public Doctors getD() {
         return MyD;
     }

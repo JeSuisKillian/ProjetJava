@@ -14,18 +14,33 @@ import java.sql.*;
  */
 @SuppressWarnings("CallToPrintStackTrace")
 
+ /**
+ * Classe permettant de mettre à jour les informations de la base de données
+ * @implements DataUpdateInterface
+ * 
+ */
 public class DataUpdate implements DataUpdateInterface {
 
     private final Connection conn;
     private final InformationSearch MyI;
 
+/**
+ * Constructeur
+ * @param I, contenant le docteur, le patient et la clinique sélectionnés, c la conncection
+ * @return InformationSearch : l'objet créé
+ */
     public DataUpdate(InformationSearch I, Connection c) {
         MyI = I;
         conn = c;
         
 
     }
-
+    
+/**
+ * Méthode permettant d'ajouter un patient à la base de données
+ * @param surName, firstName, age, gender, mail, password : les attributs du nouveau patient
+ * 
+ */
     @Override
     public void addPatients(String surName, String firstName, String age, String gender,
             String mail, String password) {
@@ -51,6 +66,11 @@ public class DataUpdate implements DataUpdateInterface {
         }
     }
 
+/**
+ * Méthode permettant d'ajouter un rendez-vous à un patient
+ * @param doc, time, Clinic, reason, date : les attributs du nouveau rendez-vous
+ * 
+ */
     @Override
     public void chooseAppointment(String doc, String time, String Clinic, String reason, java.util.Date date) {
 
@@ -76,6 +96,11 @@ public class DataUpdate implements DataUpdateInterface {
         }
     }
 
+/**
+ * Méthode permettant d'ajouter un docteur à la base de données
+ * @param surName, firstName, mail, password, specialisation, qualification, investment, clinic, clinic2 : les attributs du nouveau docteur
+ * 
+ */
     @Override
     public void addDoctors(String surName, String firstName, String mail,
             String pass, String specialisation, String qualification, String investment, String clinic, String clinic2) {
@@ -102,7 +127,12 @@ public class DataUpdate implements DataUpdateInterface {
             }
         }
     }
-    
+
+/**
+ * Méthode permettant de supprimer un patient de la base de données
+ * @param mail : identifiant du patient
+ * 
+ */
     @Override
     public void DeletePatient(String mail)
     {
@@ -119,7 +149,12 @@ public class DataUpdate implements DataUpdateInterface {
             e.printStackTrace();
         }
     }
-    
+
+/**
+ * Méthode permettant de supprimer un docteur de la base de données
+ * @param mail : identifiant du docteur
+ * 
+ */
     @Override
     public void DeleteDoctor(String mail)
     {
@@ -136,7 +171,12 @@ public class DataUpdate implements DataUpdateInterface {
             e.printStackTrace();
         }
     }
-
+    
+/**
+ * Méthode permettant de mettre à jour les données d'un patient
+ * @param surName, firstName, age, gender, mail, password : les nouveaux attributs du nouveau patient
+ * 
+ */
     @Override
     public void updatePatient(String surName, String firstName, String age, String adress,
             String gender, String mail) {
