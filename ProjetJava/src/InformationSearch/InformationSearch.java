@@ -473,7 +473,7 @@ public class InformationSearch implements InformationSearchInterface {
             ResultSet r1 = st.executeQuery();
 
             while (r1.next()) {
-                mail = r1.getString(3);
+                mail = r1.getString(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -541,7 +541,7 @@ public class InformationSearch implements InformationSearchInterface {
     }
 
  /**
- * Méthode permettant récupérer un mail d'un patient via son prénom
+ * Méthode permettant récupérer le mail d'un patient via son nom de famille
  * @param name : le nom du patient
  * @return mail : le mail du patient
  */
@@ -552,6 +552,30 @@ public class InformationSearch implements InformationSearchInterface {
         try {
             
             PreparedStatement st = conn.prepareStatement("select mail from Patients where surname=?");
+            st.setString(1, name);
+            ResultSet r1 = st.executeQuery();
+
+            while (r1.next()) {
+                mail = r1.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(mail);
+        return mail;
+    }
+
+ /**
+ * Méthode permettant récupérer le mail d'un docteur via son nom de famille
+ * @param name : le nom du docteur
+ * @return mail : le mail du docteur
+ */  
+    public String returnDoctorMail(String name) {
+        String mail = " ";
+
+        try {
+            
+            PreparedStatement st = conn.prepareStatement("select mail from Doctors where surname=?");
             st.setString(1, name);
             ResultSet r1 = st.executeQuery();
 
