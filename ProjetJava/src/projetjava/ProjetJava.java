@@ -5,8 +5,7 @@
  */
 package projetjava;
 
-import java.sql.*;
-import java.util.Date;
+
 /**
  *
  * @author killi
@@ -19,12 +18,8 @@ public class ProjetJava {
     public static void main(String[] args) {
         // TODO code application logic here
        new JFrame().setVisible(true);
-       // Date date = new Date();
-        System.out.println("test");
-       /* Patients p=new Patients();
-        p.setPatient("MOI");
-        p.chooseAppointment("Doctor House","8:00", "mon cul", "moncul",date);*/
-       // p.chargeAllAppointment();
+      
+     
 
     }
 
