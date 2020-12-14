@@ -2759,10 +2759,10 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-       
-       MyI.clearApp();
+
         
-// TODO add your handling code here:
+        MyI.clear();// TODO add your handling code here:
+
         jPanel10.setVisible(false);
         jPanel7.setVisible(true);
     }//GEN-LAST:event_jButton19ActionPerformed
