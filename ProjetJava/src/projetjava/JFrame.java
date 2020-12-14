@@ -8,6 +8,7 @@ package projetjava;
 import DAO.Appointment;
 import DataUpdate.DataUpdate;
 import InformationSearch.InformationSearch;
+import Reporting.Reporting;
 import java.awt.Color;
 import static java.lang.System.exit;
 import java.util.Date;
@@ -30,6 +31,7 @@ public class JFrame extends javax.swing.JFrame {
      */
     private InformationSearch MyI;
     private DataUpdate MyU;
+    private Reporting MyR;
     private ArrayList<JButton> MyB = new ArrayList<>();
     private progress p;
     private boolean DelPatient = true;
@@ -41,6 +43,7 @@ public class JFrame extends javax.swing.JFrame {
 
         conn = new DBConnection().getConnection();
         MyI = new InformationSearch(conn);
+        MyR = new Reporting();
         MyI.setClinic();
         MyU = new DataUpdate(MyI, conn);
 
@@ -114,6 +117,7 @@ public class JFrame extends javax.swing.JFrame {
         jButton21 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
+        jButton53 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -247,6 +251,9 @@ public class JFrame extends javax.swing.JFrame {
         jLabel51 = new javax.swing.JLabel();
         jButton52 = new javax.swing.JButton();
         jButton50 = new javax.swing.JButton();
+        jPanel30 = new javax.swing.JPanel();
+        jButton54 = new javax.swing.JButton();
+        jLabel62 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -782,6 +789,13 @@ public class JFrame extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(jTable5);
 
+        jButton53.setText("View statistics");
+        jButton53.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton53ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -798,10 +812,12 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jButton17))
+                        .addComponent(jButton17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton53))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -823,7 +839,9 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(82, 82, 82)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                .addComponent(jButton17)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton17)
+                    .addComponent(jButton53))
                 .addGap(30, 30, 30))
         );
 
@@ -2199,6 +2217,39 @@ public class JFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButton54.setText("jButton54");
+        jButton54.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton54ActionPerformed(evt);
+            }
+        });
+
+        jLabel62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/graphique_1.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
+        jPanel30.setLayout(jPanel30Layout);
+        jPanel30Layout.setHorizontalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel30Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton54))
+                    .addGroup(jPanel30Layout.createSequentialGroup()
+                        .addGap(214, 214, 214)
+                        .addComponent(jLabel62)))
+                .addContainerGap(226, Short.MAX_VALUE))
+        );
+        jPanel30Layout.setVerticalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
+                .addContainerGap(103, Short.MAX_VALUE)
+                .addComponent(jLabel62)
+                .addGap(77, 77, 77)
+                .addComponent(jButton54)
+                .addGap(22, 22, 22))
+        );
+
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
@@ -2264,6 +2315,11 @@ public class JFrame extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2328,6 +2384,11 @@ public class JFrame extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -2341,6 +2402,7 @@ public class JFrame extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jPanel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel26, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jPanel30, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -3061,6 +3123,17 @@ public class JFrame extends javax.swing.JFrame {
         closeConnection();
         exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton52ActionPerformed
+
+    private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
+            jPanel4.setVisible(false);
+            jPanel30.setVisible(true);
+
+    }//GEN-LAST:event_jButton53ActionPerformed
+
+    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
+            jPanel4.setVisible(true);
+            jPanel30.setVisible(false);
+    }//GEN-LAST:event_jButton54ActionPerformed
     public boolean IsAnInteger(String AgeValue) {
         int age;
         try {
@@ -3105,6 +3178,7 @@ public class JFrame extends javax.swing.JFrame {
         jPanel14.setVisible(false);
         jPanel24.setVisible(false);
         jPanel26.setVisible(false);
+        jPanel30.setVisible(false);
     }
     
     public void oldAndFutureAppointments()
@@ -3250,6 +3324,8 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton50;
     private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton52;
+    private javax.swing.JButton jButton53;
+    private javax.swing.JButton jButton54;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -3318,6 +3394,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3345,6 +3422,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
