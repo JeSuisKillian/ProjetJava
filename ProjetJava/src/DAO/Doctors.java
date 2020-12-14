@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetjava;
+package DAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,12 +12,8 @@ import java.util.Date;
  *
  * @author Pierr
  */
-public class Doctors {
+public class Doctors extends Users {
 
-    private String m_surName;
-    private String m_firstName;
-    private String m_mail;
-    private String m_password;
     private String m_specialisation;
     private String m_qualification;
     private String m_investement;
@@ -67,6 +63,14 @@ public class Doctors {
     public String getDocName()
     {
         return m_surName;
+    }
+    public ArrayList getDocApp()
+    {
+        return m_DocApp;
+    }
+    public Appointment getDocApp(int i)
+    {
+        return m_DocApp.get(i);
     }
 
     
