@@ -43,7 +43,7 @@ public class JFrame extends javax.swing.JFrame {
 
         conn = new DBConnection().getConnection();
         MyI = new InformationSearch(conn);
-        MyR = new Reporting();
+        MyR = new Reporting(conn);
         MyI.setClinic();
         MyU = new DataUpdate(MyI, conn);
 
@@ -2254,7 +2254,7 @@ public class JFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/graphique_1.png"))); // NOI18N
+        jLabel62.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pierr\\OneDrive\\Documents\\GitHub\\ProjetJava\\ProjetJava\\graphique125.png")); // NOI18N
 
         jPanel31.setBackground(new java.awt.Color(242, 217, 132));
 
@@ -2268,7 +2268,7 @@ public class JFrame extends javax.swing.JFrame {
             .addGroup(jPanel31Layout.createSequentialGroup()
                 .addGap(294, 294, 294)
                 .addComponent(jLabel61)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         jPanel31Layout.setVerticalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2284,22 +2284,21 @@ public class JFrame extends javax.swing.JFrame {
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel30Layout.createSequentialGroup()
-                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel30Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton54))
-                    .addGroup(jPanel30Layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(jLabel62)))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jButton54)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel62)
+                .addGap(215, 215, 215))
         );
         jPanel30Layout.setVerticalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel30Layout.createSequentialGroup()
                 .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jLabel62)
-                .addGap(33, 33, 33)
+                .addGap(31, 31, 31)
                 .addComponent(jButton54)
                 .addGap(22, 22, 22))
         );
@@ -2477,7 +2476,7 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         jComboBox7.removeAllItems();
         jComboBox7.addItem("");
         jComboBox7.addItem("Male");
@@ -2504,7 +2503,7 @@ public class JFrame extends javax.swing.JFrame {
 
         jComboBox1.removeAllItems();
         jComboBox2.removeAllItems();
-        
+
         jLabel49.setText(null);
         jLabel50.setText(null);
         jLabel34.setText(null);
@@ -2515,7 +2514,7 @@ public class JFrame extends javax.swing.JFrame {
                 jLabel50.setForeground(new Color(255, 0, 0));
                 jLabel50.setText("Please enter a valid number");
             }
-            if (jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jComboBox7.getSelectedItem().toString().equals("") || jTextField6.getText().equals("")||jTextField21.getText().equals("")) {
+            if (jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jComboBox7.getSelectedItem().toString().equals("") || jTextField6.getText().equals("") || jTextField21.getText().equals("")) {
                 jLabel49.setForeground(new Color(255, 0, 0));
                 jLabel49.setText("One or more * boxes not completed ");
             }
@@ -2528,14 +2527,14 @@ public class JFrame extends javax.swing.JFrame {
             } else {
                 jLabel34.setText(null);
                 MyU.addPatients(jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jComboBox7.getSelectedItem().toString(), jTextField6.getText(), jPasswordField2.getText(), jTextField21.getText());
-                
+
                 jTextField2.setText(null);
                 jTextField3.setText(null);
                 jTextField4.setText(null);
                 jComboBox7.removeAllItems();
                 jTextField6.setText(null);
                 jPasswordField2.setText(null);
-                
+
                 jPanel2.setVisible(false);
                 jPanel1.setVisible(true);
                 for (int i = 0; i < MyI.getC().getNameClinicSize(); i++) {
@@ -2598,7 +2597,7 @@ public class JFrame extends javax.swing.JFrame {
             jTextField1.setText(null);
             jPasswordField1.setText(null);
             jLabel15.setText("Invalid E-mail Adress or wrong Password");
-            System.out.println("Invalid email adress or wrong password");
+
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -2641,7 +2640,7 @@ public class JFrame extends javax.swing.JFrame {
             jTextField7.setText(null);
             jPasswordField3.setText(null);
             jLabel20.setText("Invalid E-mail Adress or wrong Password");
-            System.out.println("Invalid email adress or wrong password");
+
         }
 
 
@@ -2694,11 +2693,7 @@ public class JFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Doctor added sucessfully");
                 }
             }
-            /*
-             if (MyI.testIDPatient(jTextField20.getText()) == true) {
-             jLabel58.setForeground(new Color(255, 0, 0));
-             jLabel58.setText("Email already used, please use another one");
-             */
+
         }
 
 
@@ -2736,18 +2731,9 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
         // TODO add your handling code here:
-        MyI.setDoctors(MyI.returnMailDoc(String.valueOf(jComboBox2.getSelectedItem())));
-        MyI.chargeAllDocAppointment();
-        if (MyI.checkHour(new Appointment(jDateChooser1.getDate(), jButton30.getText(),
-                jComboBox1.getSelectedItem().toString(), MyI.getP().getName(),
-                jComboBox2.getSelectedItem().toString(), jTextField12.getText(), false)) == true) {
-
-        } else {
-            jButton30.setEnabled(false);
-            jButton30.setBackground(Color.red);
-            MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()), jButton30.getText(), String.valueOf(jComboBox1.getSelectedItem()), jTextField12.getText(), jDateChooser1.getDate());
-        }
-
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()), jButton30.getText(), String.valueOf(jComboBox1.getSelectedItem()), jTextField12.getText(), jDateChooser1.getDate());
+        jButton30.setEnabled(false);
+        jButton30.setBackground(Color.red);
 
     }//GEN-LAST:event_jButton30ActionPerformed
 
@@ -2761,18 +2747,9 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         // TODO add your handling code here:
 
-        MyI.setDoctors(MyI.returnMailDoc(String.valueOf(jComboBox2.getSelectedItem())));
-        MyI.chargeAllDocAppointment();
-        if (MyI.checkHour(new Appointment(jDateChooser1.getDate(), jButton30.getText(),
-                jComboBox1.getSelectedItem().toString(), MyI.getP().getName(),
-                jComboBox2.getSelectedItem().toString(), jTextField12.getText(), false)) == true) {
-            jButton32.setEnabled(false);
-            jButton32.setBackground(Color.red);
-
-        } else {
-            MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()), jButton32.getText(), String.valueOf(jComboBox1.getSelectedItem()), jTextField12.getText(), jDateChooser1.getDate());
-
-        }
+        jButton32.setEnabled(false);
+        jButton32.setBackground(Color.red);
+        MyU.chooseAppointment(String.valueOf(jComboBox2.getSelectedItem()), jButton32.getText(), String.valueOf(jComboBox1.getSelectedItem()), jTextField12.getText(), jDateChooser1.getDate());
 
     }//GEN-LAST:event_jButton32ActionPerformed
 
@@ -2865,7 +2842,7 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         // TODO add your handling code here:
         jPanel7.setVisible(false);
-        oldAndFutureAppointments();     
+        oldAndFutureAppointments();
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -2889,7 +2866,6 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
 
-        
         MyI.clear();// TODO add your handling code here:
 
         jPanel10.setVisible(false);
@@ -2957,7 +2933,6 @@ public class JFrame extends javax.swing.JFrame {
         jTextPane1.setEditable(false);
         String[] temp = String.valueOf(jComboBox3.getSelectedItem()).split(" : ");
         String mail = temp[1];
-        System.out.println(mail);
         MyI.setPatient(mail);
         jLabel46.setText(MyI.getP().getFullName() + "'s record");
         jTextPane1.setText("SURNAME :" + MyI.getP().getName() + "\n"
@@ -3004,7 +2979,7 @@ public class JFrame extends javax.swing.JFrame {
 
         for (int i = 0; i < temp.size(); ++i) {
             data[i][0] = temp.get(i);
-            System.out.println(temp.get(i));
+
         }
 
         jTable3.setModel(new DefaultTableModel(data, columns));
@@ -3111,7 +3086,7 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton49ActionPerformed
         // TODO add your handling code here:
-   if (DelPatient == true) {
+        if (DelPatient == true) {
             String nam, c, mailo;
             String[] n;
             nam = (String) jComboBox6.getSelectedItem();
@@ -3198,14 +3173,16 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton52ActionPerformed
 
     private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
-            jPanel4.setVisible(false);
-            jPanel30.setVisible(true);
+
+        MyR.PieGraph();
+        jPanel4.setVisible(false);
+        jPanel30.setVisible(true);
 
     }//GEN-LAST:event_jButton53ActionPerformed
 
     private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
-            jPanel4.setVisible(true);
-            jPanel30.setVisible(false);
+        jPanel4.setVisible(true);
+        jPanel30.setVisible(false);
     }//GEN-LAST:event_jButton54ActionPerformed
 
     private void jTextField21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField21ActionPerformed
@@ -3257,16 +3234,15 @@ public class JFrame extends javax.swing.JFrame {
         jPanel26.setVisible(false);
         jPanel30.setVisible(false);
     }
-    
-    public void oldAndFutureAppointments()
-    {
+
+    public void oldAndFutureAppointments() {
         MyI.chargeAllAppointmentP();
         Date date = new Date();
         String data[][] = new String[MyI.getP().getApp().size()][6];
         String data2[][] = new String[MyI.getP().getApp().size()][6];
         String columns[] = {"Doctor", "Patient", "Reason", "Day", "Hour", "Clinic"};
         DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-         for (int i = 0; i < MyI.getP().getApp().size(); ++i) {
+        for (int i = 0; i < MyI.getP().getApp().size(); ++i) {
             try {
                 if (dateFormat.parse(dateFormat.format(MyI.getP().getApp(i).getDate())).after(date)) {
                     data2[i][0] = MyI.getP().getApp(i).getDoctor();
@@ -3275,19 +3251,19 @@ public class JFrame extends javax.swing.JFrame {
                     data2[i][3] = dateFormat.format(MyI.getP().getApp(i).getDate());
                     data2[i][4] = MyI.getP().getApp(i).getTime();
                     data2[i][5] = MyI.getP().getApp(i).getClinic();
-                }  } catch (ParseException ex) {
+                }
+            } catch (ParseException ex) {
                 Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         MyModel2 = new DefaultTableModel(data2, columns);
-        int k=0;
-        while(MyModel2.getValueAt(k,0)==null)
-        {
+        int k = 0;
+        while (MyModel2.getValueAt(k, 0) == null) {
             MyModel2.removeRow(k);
             k++;
         }
         jTable4.setModel(MyModel2);
-        
+
         for (int i = 0; i < MyI.getP().getApp().size(); ++i) {
 
             try {
@@ -3299,19 +3275,16 @@ public class JFrame extends javax.swing.JFrame {
                     data[i][4] = MyI.getP().getApp(i).getTime();
                     data[i][5] = MyI.getP().getApp(i).getClinic();
                 }
-            
-               
-                
+
             } catch (ParseException ex) {
                 Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
-       MyModel = new DefaultTableModel(data, columns);
-       
-        
+        MyModel = new DefaultTableModel(data, columns);
+
         jTable1.setModel(MyModel);
-       
+
         jPanel10.setVisible(true);
     }
 

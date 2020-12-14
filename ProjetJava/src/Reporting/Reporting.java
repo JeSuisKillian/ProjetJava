@@ -24,6 +24,10 @@ public class Reporting {
     
     private Connection conn;
     
+    public Reporting(Connection c)
+    {
+        conn=c;
+    }
     public void PieGraph()
     {
         try {
@@ -59,7 +63,7 @@ public class Reporting {
         int x = 235;
         int y = 250;
         
-        File f = new File("graphique.png");
+        File f = new File("graphique125.png");
             try {
                 ChartUtilities.saveChartAsPNG(f, chart, x,y);
             } catch (IOException ex) {
