@@ -12,7 +12,7 @@ package DataUpdate;
 public interface DataUpdateInterface {
 
     public void addPatients(String surName, String firstName, String age, String gender,
-            String mail, String password);
+            String mail, String password, String adress);
 
     public void chooseAppointment(String doc, String time, String Clinic, String reason, java.util.Date date);
 

@@ -486,6 +486,25 @@ public class InformationSearch implements InformationSearchInterface {
         return temp;
     }
     
+    public String returnDoctorMail(String name) {
+        String mail = " ";
+
+        try {
+            
+            PreparedStatement st = conn.prepareStatement("select mail from Doctors where surname=?");
+            st.setString(1, name);
+            ResultSet r1 = st.executeQuery();
+
+            while (r1.next()) {
+                mail = r1.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(mail);
+        return mail;
+    }
+    
     public void clearApp()
     {
         

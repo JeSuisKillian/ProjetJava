@@ -28,7 +28,7 @@ public class DataUpdate implements DataUpdateInterface {
 
     @Override
     public void addPatients(String surName, String firstName, String age, String gender,
-            String mail, String password) {
+            String mail, String password, String adress) {
         if (MyI.testIDPatient(mail) == false) {
 
             try {
@@ -41,7 +41,7 @@ public class DataUpdate implements DataUpdateInterface {
                 st.setString(4, gender);
                 st.setString(5, mail);
                 st.setString(6, password);
-                st.setString(7, "ici");
+                st.setString(7, adress);
                 st.execute();
                
                 System.out.println("Added Patient");
